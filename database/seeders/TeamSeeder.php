@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
-class CategorySeeder extends Seeder
+class TeamSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,14 +15,14 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->truncate();
-        $json = File::get("database/data/categories.json");
+        DB::table('teams')->truncate();
+        $json = File::get("database/data/teams.json");
         $data = json_decode($json);
+    
         foreach ($data as $obj) {
-            DB::table('categories')->insert(array(
-                'name' => $obj->name,
-                'created_at' => date("Y-m-d H:i:s"),
-                'updated_at' => date("Y-m-d H:i:s")
+            
+            DB::table('teams')->insert(array(
+                'name' => $obj->name
             ));
         }
     }

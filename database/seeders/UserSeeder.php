@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class UserSeeder extends Seeder
 {
@@ -16,25 +16,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::create(array(
-            'name' => 'Bilal Ahmed',
-            'email' => 'biahmed@touchstone.com.pk',
-            'password' => Hash::make('touch123'),
-            'status' => 1,
-            'created_at' => date("Y-m-d H:i:s"),
-            'updated_at' => date("Y-m-d H:i:s")
-        ));
+        DB::table('users')->truncate();
+        $json = File::get("database/data/users.json");
+        $data = json_decode($json);
+    
+        foreach ($data as $obj) {
+            
+            DB::table('users')->insert(array(
+                'name' => $obj->name,
+                'hrms_id' => $obj->hrms_id,
+                'team_id' => $obj->team_id
+            ));
+        }
 
-/*         $faker = Faker::create();
-        foreach (range(1, 6) as $index) {
-            User::create([
-                'name' => $faker->name(),
-                'email' => $faker->safeEmail,
-                'password' => Hash::make('touch123'),
-                'status' => $faker->randomElement([0, 1]),
-                'created_at' => $faker->date("Y-m-d H:i:s"),
-                'updated_at' => $faker->date("Y-m-d H:i:s")
-            ]);
-        } */
+
     }
 }
