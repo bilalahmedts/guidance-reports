@@ -24,11 +24,11 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|unique:roles',
+            'name' => 'required|alpha|unique:roles',
         ];
 
         if ($this->getMethod() == "PUT") {
-            $rules['name'] = 'required|unique:roles,name,' . $this->role->id;
+            $rules['name'] = 'required|alpha|unique:roles,name,' . $this->role->id;
         }
 
         return $rules;

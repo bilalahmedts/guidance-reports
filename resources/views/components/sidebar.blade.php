@@ -4,22 +4,21 @@
             <a href="{{ route('dashboard') }}" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                    Dashboard
+                Dashboard
                 </p>
             </a>
         </li>
-        <li class="nav-header">VOICE AUDITS</li>
         <li class="nav-item">
-            <a href="{{ route('audit.index') }}" class="nav-link">
-                <i class="nav-icon far fa fa-balance-scale"></i>
+            <a href="{{ route("guidance-reports.index") }}" class="nav-link">
+                <i class="nav-icon far fa fa-microphone"></i>
                 <p>
-                    Audit
+                    Guidance Reports
                 </p>
             </a>
         </li>
-        <li class="nav-header">SETTINGS</li>
+        {{-- <li class="nav-header">SETTINGS</li>
         <li class="nav-item">
-            <a href="{{ route('voice-evaluations.index') }}" class="nav-link">
+            <a href="{{ route("voice-evaluations.index") }}" class="nav-link">
                 <i class="nav-icon far fa fa-microphone"></i>
                 <p>
                     Voice Evaluation
@@ -55,13 +54,7 @@
                         <p>Roles</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('cmu.index') }}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>CMU</p>
-                    </a>
-                </li>
-            </ul>
+            </ul> --}}
         </li>
     </ul>
 </nav>

@@ -10,28 +10,11 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $query = new User;
-        if ($request->has('name')) {
-            if (!empty($request->name)) {
-                $query = $query->where('name', 'LIKE', "%{$request->name}%");
-            }
-        }
-        if ($request->has('email')) {
-            if (!empty($request->email)) {
-                $query = $query->where('email','LIKE', "%{$request->email}%");
-            }
-        }
-        if ($request->has('status')) {
-            if (!empty($request->status)) {
-                $query = $query->where('status','LIKE', "%{$request->status}%");
-            }
-        }
-        $users = $query->sortable()->paginate(10);
+        $users = User::sortable()->paginate(5);
         return view('users.index', compact('users'));
     }
-
     public function edit(User $users)
     {
         return view('users.edit', compact('users'));

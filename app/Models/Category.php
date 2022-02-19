@@ -9,10 +9,6 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable = [
-       'id', 'name',
+        'name',
     ];
-    public function datapoints()
-    {
-        return $this->hasMany(Datapoint::class, 'category_id');
-    }
 }

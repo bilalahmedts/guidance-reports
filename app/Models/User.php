@@ -17,16 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'status',
-        'campaign_id',
-        'designation_id',
-        'reporting_to',
-        'hrms_id'
-    ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -46,21 +37,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function getSupervisor()
-    {
-        return $this->hasOne(User::class, 'id', 'reporting_to');
-    }
 
-
-    public function campaign()
-    {
-        return $this->hasOne(Campaign::class, 'id', 'campaign_id');
-    }
-
-  
     /**
-     * The attributes that should be sorted 
+     * The attributes that should be sorted
      */
 
-     public $sortable = ['id','name','email','created_at', 'updated_at'];
+
+     public function team()
+     {
+         return $this->hasMany(Team::class, 'id', 'team_id');
+     }
 }

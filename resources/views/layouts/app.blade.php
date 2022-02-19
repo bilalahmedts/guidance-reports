@@ -130,11 +130,11 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li> --}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" role="button">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -153,9 +153,9 @@
                     <div class="image">
                         <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                     </div>
-                    <div class="info">
+{{--                     <div class="info">
                         <a href="#" class="d-block">{{ Auth::user()->name ?? 'Default' }}</a>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Sidebar Menu -->
@@ -224,22 +224,8 @@
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-    
+
     <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
-<script>
-            $(function() {
-
-$('.datepicker').datetimepicker({
-    format: 'L',
-    format: 'DD-MM-YYYY',
-    keepInvalid: false
-});
-});
-</script>
-
-
-
-    @yield('scripts')
 
 
 </body>

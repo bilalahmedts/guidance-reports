@@ -17,15 +17,10 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = new Role;
-        if ($request->has('name')) {
-            if (!empty($request->name)) {
-                $query = $query->where('name', 'LIKE', "%{$request->name}%");
-            }
-        }
-        $roles = $query->paginate(5);
+
+        $roles = Role::sortable()->paginate(5);
         return view('roles.index', compact('roles'));
     }
 
@@ -85,10 +80,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(Role $roles)
     {
 
-        $role->delete();
+        $roles->delete();
         Session::flash('success', 'Role deleted successfully!');
         return redirect()->back();
     }

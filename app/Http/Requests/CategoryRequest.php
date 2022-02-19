@@ -26,9 +26,6 @@ class CategoryRequest extends FormRequest
         $rules = [
             'name' => 'required|alpha|unique:categories',
         ];
-        if ($this->getMethod() == "PUT") {
-            $rules['name'] = 'required|alpha|unique:categories,name,' . $this->category->id;
-        }
         return $rules;
     }
 }

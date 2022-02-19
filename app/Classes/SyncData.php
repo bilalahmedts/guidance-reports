@@ -110,14 +110,6 @@ class SyncData
 
         $user->status = ($hrms_user->Active) ? 1 : 0;
 
-        $user->reporting_to = $hrms_user->ReportingTo;
-        
-        $user->designation_id = $hrms_user->DesignationID;
-
-        $user->campaign_id = $hrms_user->CampaignID;
-
-        $user->hrms_id = $hrms_user->ID;
-
         $user->save();
     }
 
@@ -129,9 +121,6 @@ class SyncData
         $user->email = $hrms_user->EmailAddress;
         $user->password = Hash::make($hrms_user->Password);
         $user->status = ($hrms_user->Active) ? 1 : 0;
-        $user->reporting_to = $hrms_user->ReportingTo;
-        $user->designation_id = $hrms_user->DesignationID;
-        $user->campaign_id = $hrms_user->CampaignID;
         $user->save();
     }
     public function checkEmail($user, $new_email){
@@ -152,6 +141,5 @@ class SyncData
         }
         return false;
     }
-
 
 }
