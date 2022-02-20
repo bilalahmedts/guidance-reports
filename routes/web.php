@@ -35,7 +35,7 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('guidance-reports')->group(function () {
     Route::get('/', [GuidanceReportController::class, 'index'])->name('guidance-reports.index');
-    Route::get('/get-team',[GuidanceReportController::class, 'getTeam'])->name('guidance-reports.getTeam');
+    Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getTeamDetail'])->name('guidance-reports.get-team-detail');
     Route::get('/create', [GuidanceReportController::class, 'create'])->name('guidance-reports.create');
     Route::post('/store', [GuidanceReportController::class, 'store'])->name('guidance-reports.store');
     /* Route::get('/edit/{campaign}', [GuidanceReportController::class, 'edit'])->name('campaigns.edit');
