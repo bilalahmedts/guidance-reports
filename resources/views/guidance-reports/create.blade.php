@@ -4,11 +4,6 @@
 
     @section('content')
 
-        {{-- @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-    <p>{{ $message }}</p>
-    </div>
-    @endif --}}
         <div class="back-area mb-3">
             <a href="{{ route('guidance-reports.index') }}" class="btn btn-secondary btn-sm"><i
                     class="fas fa-arrow-left mr-2"></i> Go Back</a>
