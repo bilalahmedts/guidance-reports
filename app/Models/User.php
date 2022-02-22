@@ -41,8 +41,6 @@ class User extends Authenticatable
     /**
      * The attributes that should be sorted
      */
-
-
      public function team()
      {
          return $this->hasOne(Team::class, 'id', 'team_id');

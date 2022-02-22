@@ -12,4 +12,11 @@ class GuidanceReport extends Model
         'user_id', 'categories_id', 'transfer_per_day', 'call_per_day', 'rea_sign_up', 
         'tbd_assigned', 'no_of_matches', 'leads', 'conversations', 'inbound'];
     protected $table = 'stats';
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+
 }

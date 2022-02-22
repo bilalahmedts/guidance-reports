@@ -14,9 +14,12 @@ use Illuminate\Http\Request;
 
 class GuidanceReportController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
-        return view('index');
+        
+        $stats = GuidanceReport::paginate(10);
+        return view('index', compact('stats'));
     }
 
     public function create()
