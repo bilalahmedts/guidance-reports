@@ -15,7 +15,6 @@ class CreateStatsTable extends Migration
     {
         Schema::create('stats', function (Blueprint $table) {
             $table->id();
-            $table->integer('team_id');
             $table->integer('user_id');
             $table->integer('categories_id');
             $table->integer('transfer_per_day')->nullable();
@@ -24,7 +23,7 @@ class CreateStatsTable extends Migration
             $table->integer('tbd_assigned')->nullable();
             $table->integer('no_of_matches')->nullable();
             $table->integer('leads')->nullable();
-            $table->integer('chats')->nullable();
+            $table->integer('conversations')->nullable();
             $table->integer('inbound')->nullable();
             $table->timestamps();
         });
