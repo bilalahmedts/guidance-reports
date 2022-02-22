@@ -35,7 +35,6 @@
     <section class="content">
         @yield('content')
     </section>
-
     <!-- jQuery -->
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -70,7 +69,6 @@
     <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
 
     @yield('scripts')
-
 
 </body>
 

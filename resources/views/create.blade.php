@@ -5,15 +5,15 @@
     @section('content')
 
         <div class="back-area mb-3">
-            <a href="{{ route('guidance-reports.index') }}" class="btn btn-secondary btn-sm"><i
-                    class="fas fa-arrow-left mr-2"></i> Go Back</a>
+            <a href="{{ route('index') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left mr-2"></i> Go
+                Back</a>
         </div>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Create Guidance Report</h3>
             </div>
 
-            <form action="{{ route('guidance-reports.store') }}" method="post" autocomplete="off">
+            <form action="{{ route('store') }}" method="post" autocomplete="off">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -30,12 +30,12 @@
                     @enderror
                     <div class="form-group">
                         <label for="exampleInputEmail1">Team Name</label>
-                        <input type="text" class="form-control"  id="team_name" disabled>
+                        <input type="text" class="form-control" id="team_name" disabled>
                     </div>
                     <div id="team_one" style="display: none">
                         <div class="form-group">
                             <label for="exampleInputEmail1">REA Signups</label>
-                            <input type="text" class="form-control" name="rea_signup" placeholder="Enter REA Signups"
+                            <input type="text" class="form-control" name="rea_sign_up" placeholder="Enter REA Signups"
                                 id="team_one">
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div id="team_inbound" style="display: none">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Inbounds</label>
-                            <input type="text" class="form-control" name="inbounds" placeholder="Enter Number of Inbounds"
+                            <input type="text" class="form-control" name="inbound" placeholder="Enter Number of Inbounds"
                                 id="inbounds">
                         </div>
                     </div>
@@ -161,14 +161,5 @@
                     $('#team_two_category').show()
                 });
             });
-            /* $(document).ready(function() {
-            optionText = 'Premium';
-            optionValue = 'premium';
-  
-            $('#select1').append(`<option value="${optionValue}">
-                                       ${optionText}
-                                  </option>`);
-
-            }); */
         </script>
     @endsection

@@ -21,33 +21,8 @@ use App\Http\Controllers\VoiceEvaluation\DatapointController; */
 |
 */
 
-Route::middleware('auth')->get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', [GuidanceReportController::class, 'index'])->name('index');
+    Route::get('/create', [GuidanceReportController::class, 'create'])->name('create');
+    Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails'])->name('get-team-detail');
+    Route::post('/store', [GuidanceReportController::class, 'store'])->name('store');
 
-
-// secured routes
-/* Route::middleware('auth')->group(function () { */
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-/* Route::get('logout', [LoginController::class, 'logout'])->name('logout'); */
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::prefix('guidance-reports')->group(function () {
-    Route::get('/', [GuidanceReportController::class, 'index'])->name('guidance-reports.index');
-    Route::get('/create', [GuidanceReportController::class, 'create'])->name('guidance-reports.create');
-    Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails'])->name('guidance-reports.get-team-detail');
-    Route::post('/store', [GuidanceReportController::class, 'store'])->name('guidance-reports.store');
-    /* Route::get('/edit/{campaign}', [GuidanceReportController::class, 'edit'])->name('campaigns.edit');
-    Route::put('/edit/{campaign}', [GuidanceReportController::class, 'update'])->name('campaigns.update');
-    Route::get('/delete/{campaign}', [GuidanceReportController::class, 'destroy'])->name('campaigns.destroy'); */
-});
-
-/* }); */
-
-// unsecure routes
-/* Route::middleware('guest')->group(function () {
-
-    Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-}); */

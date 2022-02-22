@@ -16,14 +16,14 @@ class GuidanceReportController extends Controller
 {
     public function index()
     {
-        return view('guidance-reports.index');
+        return view('index');
     }
 
     public function create()
     {
         $users = User::all();
         $categories = Category::all();
-        return view('guidance-reports.create', compact('users','categories'));
+        return view('create', compact('users','categories'));
     }
     public function getUserTeamDetails($id)
     {
@@ -38,6 +38,6 @@ class GuidanceReportController extends Controller
     {
         GuidanceReport::create($request->all());
         Session::flash('success', 'Report Generated successfully!');
-        return redirect()->route('guidance-reports.index');
+        return redirect()->route('index');
     }
 }
