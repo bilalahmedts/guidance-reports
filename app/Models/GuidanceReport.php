@@ -17,6 +17,10 @@ class GuidanceReport extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'categories_id');
+    }
 
 
 }

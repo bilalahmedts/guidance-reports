@@ -11,4 +11,8 @@ class Category extends Model
     protected $fillable = [
         'name', 'team_id'
     ];
+    public function team()
+    {
+        return $this->hasMany(Team::class, 'id', 'team_id');
+    }
 }

@@ -29,6 +29,7 @@
                     <tr>
                         <th>Agent Name</th>
                         <th>Team</th>
+                        <th>Campaign</th>
                         <th>Transfer Per Day</th>
                         <th>Call Per Day</th>
                         <th>REA Sign Up</th>
@@ -45,6 +46,7 @@
                         <tr>
                             <td>{{ $stat->user->name ?? '-' }}</td>
                             <td>{{ $stat->user->team->name ?? '-' }}</td>
+                            <td>{{ $stat->category->name ?? '-' }}</td>
                             <td>{{ $stat->transfer_per_day ?? '-' }}</td>
                             <td>{{ $stat->call_per_day ?? '-' }}</td>
                             <td>{{ $stat->rea_sign_up ?? '-' }}</td>

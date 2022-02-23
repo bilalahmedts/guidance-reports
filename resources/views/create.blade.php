@@ -38,6 +38,9 @@
                             <input type="text" class="form-control" name="rea_sign_up" placeholder="Enter REA Signups"
                                 id="team_one">
                         </div>
+                        @error('rea_sign_up')
+                            <div class="validate-error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div id="team_two" style="display: none">
                         <div class="form-group">
@@ -55,11 +58,17 @@
                                 <input type="text" class="form-control" name="call_per_day"
                                     placeholder="Number of Calls Per Day" id="call_per_day">
                             </div>
+                            @error('call_per_day')
+                                <div class="validate-error">{{ $message }}</div>
+                            @enderror
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Number of Transfers Per Day</label>
                                 <input type="text" class="form-control" name="transfer_per_day"
                                     placeholder="Enter Number of Transfers Per Day" id="transfer_per_day">
                             </div>
+                            @error('transfer_per_day')
+                                <div class="validate-error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div id="team_three" style="display: none">
@@ -68,11 +77,17 @@
                             <input type="text" class="form-control" name="tbd_assigned" placeholder="Enter TBDs Assigned"
                                 id="tbd_assigned">
                         </div>
+                        @error('tbd_assigned')
+                            <div class="validate-error">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Number of Matches</label>
                             <input type="text" class="form-control" name="no_of_matches"
                                 placeholder="Enter Number of Matches" id="no_of_matches">
                         </div>
+                        @error('no_of_matches')
+                            <div class="validate-error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div id="team_chat" style="display: none">
                         <div class="form-group">
@@ -80,11 +95,17 @@
                             <input type="text" class="form-control" name="leads" placeholder="Enter Number of Leads"
                                 id="leads">
                         </div>
+                        @error('leads')
+                            <div class="validate-error">{{ $message }}</div>
+                        @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Conversations</label>
                             <input type="text" class="form-control" name="conversations"
                                 placeholder="Enter Number of Conversations" id="conversations">
                         </div>
+                        @error('conversations')
+                            <div class="validate-error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div id="team_inbound" style="display: none">
                         <div class="form-group">
@@ -92,6 +113,9 @@
                             <input type="text" class="form-control" name="inbound" placeholder="Enter Number of Inbounds"
                                 id="inbounds">
                         </div>
+                        @error('inbound')
+                            <div class="validate-error">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
                 <!-- /.card-body -->

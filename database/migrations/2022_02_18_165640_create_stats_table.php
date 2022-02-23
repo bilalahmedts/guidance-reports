@@ -16,7 +16,7 @@ class CreateStatsTable extends Migration
         Schema::create('stats', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('categories_id');
+            $table->integer('categories_id')->nullable();
             $table->integer('transfer_per_day')->nullable();
             $table->integer('call_per_day')->nullable();
             $table->integer('rea_sign_up')->nullable();

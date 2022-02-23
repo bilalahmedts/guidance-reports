@@ -24,7 +24,14 @@ class GuidanceReportRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+             'transfer_per_day' => 'required|numeric', 
+             'call_per_day' => 'required|numeric', 
+             'rea_sign_up' => 'required|numeric', 
+             'tbd_assigned' => 'required|numeric', 
+             'no_of_matches' => 'required|numeric', 
+             'leads' => 'required|numeric', 
+             'conversations' => 'required|numeric', 
+             'inbound' => 'required|numeric'
         ];
     }
 }
