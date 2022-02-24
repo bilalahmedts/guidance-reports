@@ -6,14 +6,19 @@ use App\Models\GuidanceReport;
 
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromView;
-
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Illuminate\Contracts\View\View;
 
-class GuidanceReportExport implements FromView, WithHeadings
+class GuidanceReportExport implements FromView, WithHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
+    public function __construct($stats)
+    {
+        $this->stats = $stats;
+    }
+    
     public function headings(): array
     {
         return[
@@ -31,10 +36,6 @@ class GuidanceReportExport implements FromView, WithHeadings
         ];
     }
 
-    public function __construct($stats)
-    {
-        $this->stats = $stats;
-    }
     public function view(): View
     {
         return view('export',[
