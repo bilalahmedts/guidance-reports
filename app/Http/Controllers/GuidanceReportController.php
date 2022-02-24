@@ -18,13 +18,11 @@ use Illuminate\Http\Request;
 class GuidanceReportController extends Controller
 {
 
-    public function index(Request $request)
-    {
-        
+    public function index()
+    {   
         $stats = GuidanceReport::paginate(10);
         return view('index', compact('stats'));
     }
-
     public function create()
     {
         $users = User::all();
@@ -42,8 +40,13 @@ class GuidanceReportController extends Controller
     }
     public function store(GuidanceReportRequest $request)
     {
+        $stats = GuidanceReport::whereDate('created_at', now())->count();
+        if ($stats > 1) {
+            Session::flash('warning', 'Record already exists for current date');
+            return redirect()->route('index');
+        }
         GuidanceReport::create($request->all());
-        Session::flash('success', 'Report Generated successfully!');
+        Session::flash('success', 'Data Added successfully!');
         return redirect()->route('index');
     }
     public function export()

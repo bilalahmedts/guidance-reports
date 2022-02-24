@@ -12,6 +12,11 @@
             <p>{{ $message }}</p>
         </div>
     @endif
+    @if ($message = Session::get('warning'))
+    <div class="alert alert-warning">
+        <p>{{ $message }}</p>
+    </div>
+@endif
 
     <div class="card card-primary card-outline">
 
@@ -43,6 +48,7 @@
                         <th>Leads</th>
                         <th>Conversations</th>
                         <th>Inbound</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +66,7 @@
                                 <td>{{ $stat->leads ?? '-' }}</td>
                                 <td>{{ $stat->conversations ?? '-' }}</td>
                                 <td>{{ $stat->inbound ?? '-' }}</td>
-
+                                <td>{{ $stat->created_at->format("d-m-Y") ?? '-' }}</td>
                             </tr>
                         @endforeach
                     @else

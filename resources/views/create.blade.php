@@ -4,6 +4,11 @@
 
     @section('content')
 
+
+    @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
+
         <div class="back-area mb-3">
             <a href="{{ route('index') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left mr-2"></i> Go
                 Back</a>
@@ -25,9 +30,6 @@
                             @endforeach
                         </select>
                     </div>
-                    @error('user_id')
-                        <div class="validate-error">{{ $message }}</div>
-                    @enderror
                     <div class="form-group">
                         <label for="exampleInputEmail1">Team Name</label>
                         <input type="text" class="form-control" id="team_name" disabled>

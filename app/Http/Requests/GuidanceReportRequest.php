@@ -23,15 +23,48 @@ class GuidanceReportRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-             'transfer_per_day' => 'required|numeric', 
-             'call_per_day' => 'required|numeric', 
-             'rea_sign_up' => 'required|numeric', 
-             'tbd_assigned' => 'required|numeric', 
-             'no_of_matches' => 'required|numeric', 
-             'leads' => 'required|numeric', 
-             'conversations' => 'required|numeric', 
-             'inbound' => 'required|numeric'
-        ];
+        $request = $this->request;
+        $rules = [];
+        if ($request->has('transfer_per_day')) {
+            if (!empty($request->transfer_per_day)) {
+                $rules['transfer_per_day'] = "numeric";
+            }
+        }
+        if ($request->has('call_per_day')) {
+            if (!empty($request->call_per_day)) {
+                $rules['call_per_day'] = "numeric";
+            }
+        }
+        if ($request->has('rea_sign_up')) {
+            if (!empty($request->rea_sign_up)) {
+                $rules['rea_sign_up'] = "numeric";
+            }
+        }
+        if ($request->has('tbd_assigned')) {
+            if (!empty($request->tbd_assigned)) {
+                $rules['tbd_assigned'] = "numeric";
+            }
+        }
+        if ($request->has('no_of_matches')) {
+            if (!empty($request->no_of_matches)) {
+                $rules['no_of_matches'] = "numeric";
+            }
+        }
+        if ($request->has('leads')) {
+            if (!empty($request->leads)) {
+                $rules['leads'] = "numeric";
+            }
+        }
+        if ($request->has('conversations')) {
+            if (!empty($request->conversations)) {
+                $rules['conversations'] = "numeric";
+            }
+        }
+        if ($request->has('inbound')) {
+            if (!empty($request->inbound)) {
+                $rules['inbound'] = "numeric";
+            }
+        }
+        return $rules;
     }
 }
