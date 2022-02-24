@@ -25,4 +25,4 @@ use App\Http\Controllers\VoiceEvaluation\DatapointController; */
     Route::get('/create', [GuidanceReportController::class, 'create'])->name('create');
     Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails'])->name('get-team-detail');
     Route::post('/store', [GuidanceReportController::class, 'store'])->name('store');
-
+    Route::get('/export', [GuidanceReportController::class, 'export'])->name('export');

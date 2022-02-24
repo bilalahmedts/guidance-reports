@@ -7,6 +7,9 @@ use App\Models\Team;
 use App\Models\User;
 use App\Models\GuidanceReport;
 use App\Http\Requests\GuidanceReportRequest;
+use App\Exports\GuidanceReportExport;
+
+use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Session;
 
@@ -37,10 +40,15 @@ class GuidanceReportController extends Controller
         ];
         return response()->json(['data' => $data]);
     }
-    public function store(Request $request)
+    public function store(GuidanceReportRequest $request)
     {
         GuidanceReport::create($request->all());
         Session::flash('success', 'Report Generated successfully!');
         return redirect()->route('index');
+    }
+    public function export()
+    {
+        $stats = GuidanceReport::all();
+        return Excel::download(new GuidanceReportExport($stats), 'Guidance-Report.xlsx');
     }
 }
