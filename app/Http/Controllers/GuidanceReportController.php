@@ -40,10 +40,10 @@ class GuidanceReportController extends Controller
     }
     public function store(GuidanceReportRequest $request)
     {
-        $stats = GuidanceReport::whereDate('created_at', now())->count();
-        if ($stats > 1) {
+        $stats = GuidanceReport::where('user_id', $request->user_id)->whereDate('created_at', now())->count();
+        if ($stats > 0) {
             Session::flash('warning', 'Record already exists for current date');
-            return redirect()->route('index');
+            return redirect()->route('index');           
         }
         GuidanceReport::create($request->all());
         Session::flash('success', 'Data Added successfully!');
