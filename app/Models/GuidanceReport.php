@@ -10,7 +10,7 @@ class GuidanceReport extends Model
     use HasFactory;
     protected $fillable = [
         'user_id', 'categories_id', 'transfer_per_day', 'call_per_day', 'rea_sign_up', 
-        'tbd_assigned', 'no_of_matches', 'leads', 'conversations', 'inbound'];
+        'tbd_assigned', 'no_of_matches', 'leads', 'conversations', 'inbound', 'created_at'];
     protected $table = 'stats';
 
     public function user()

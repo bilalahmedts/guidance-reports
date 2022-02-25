@@ -18,6 +18,7 @@
         @if (count($stats) > 0)
             @foreach ($stats as $stat)
                 <tr>
+                    {{-- <td>{{ $stat->created_at->format("d-m-Y") ?? '-' }}</td> --}}
                     <td>{{ $stat->user->name ?? '-' }}</td>
                     <td>{{ $stat->user->team->name ?? '-' }}</td>
                     <td>{{ $stat->category->name ?? '-' }}</td>
@@ -29,7 +30,6 @@
                     <td>{{ $stat->leads ?? '-' }}</td>
                     <td>{{ $stat->conversations ?? '-' }}</td>
                     <td>{{ $stat->inbound ?? '-' }}</td>
-
                 </tr>
             @endforeach
         @else

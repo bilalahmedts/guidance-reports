@@ -5,12 +5,12 @@
     @section('content')
 
 
-    @if($errors->any())
+{{--     @if($errors->any())
     {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
+@endif --}}
 
         <div class="back-area mb-3">
-            <a href="{{ route('index') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left mr-2"></i> Go
+            <a href="{{ route('reports.index') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left mr-2"></i> Go
                 Back</a>
         </div>
         <div class="card">
@@ -18,7 +18,7 @@
                 <h3 class="card-title">Create Guidance Report</h3>
             </div>
 
-            <form action="{{ route('store') }}" method="post" autocomplete="off">
+            <form action="{{ route('reports.store') }}" method="post" autocomplete="off">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">

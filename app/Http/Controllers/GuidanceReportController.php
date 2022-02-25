@@ -21,13 +21,13 @@ class GuidanceReportController extends Controller
     public function index()
     {   
         $stats = GuidanceReport::paginate(10);
-        return view('index', compact('stats'));
+        return view('reports.index', compact('stats'));
     }
     public function create()
     {
         $users = User::all();
         $categories = Category::all();
-        return view('create', compact('users','categories'));
+        return view('reports.create', compact('users','categories'));
     }
     public function getUserTeamDetails($id)
     {
@@ -43,15 +43,34 @@ class GuidanceReportController extends Controller
         $stats = GuidanceReport::where('user_id', $request->user_id)->whereDate('created_at', now())->count();
         if ($stats > 0) {
             Session::flash('warning', 'Record already exists for current date');
-            return redirect()->route('index');           
+            return redirect()->route('reports.index');           
         }
         GuidanceReport::create($request->all());
         Session::flash('success', 'Data Added successfully!');
-        return redirect()->route('index');
+        return redirect()->route('reports.index');
+    }
+    public function edit(GuidanceReport $stat)
+    {
+        $users = User::all();
+        $categories = Category::all();
+        return view('reports.edit', compact('stat', 'users', 'categories'));
+    }
+    public function update(GuidanceReportRequest $request, GuidanceReport $stat)
+    {
+        $stat->update($request->all());
+        Session::flash('success', 'Entry updated successfully!');
+        return redirect()->route('reports.index');
+    }
+    public function destroy(GuidanceReport $stat)
+    {
+        $stat->delete();
+        Session::flash('success', 'Entry deleted successfully!');
+        return back();
     }
     public function export()
     {
         $stats = GuidanceReport::all();
         return Excel::download(new GuidanceReportExport($stats), 'Guidance-Report.xlsx');
     }
+
 }

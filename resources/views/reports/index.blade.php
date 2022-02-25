@@ -23,10 +23,10 @@
         <div class="card-header">
             <h3 class="card-title">Guidance Report</h3>
             <div class="card-tools">
-                <a href="{{ route('export') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('reports.export') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-file-export"></i> Generate Report
                 </a>
-                <a href="{{ route('create') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('reports.create') }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus"></i> Create Report
                 </a>
 
@@ -37,6 +37,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th>Date</th>
                         <th>Agent Name</th>
                         <th>Team</th>
                         <th>Campaign</th>
@@ -48,13 +49,14 @@
                         <th>Leads</th>
                         <th>Conversations</th>
                         <th>Inbound</th>
-                        <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (count($stats) > 0)
                         @foreach ($stats as $stat)
                             <tr>
+                                <td>{{ $stat->created_at->format("d-m-Y") ?? '-' }}</td>
                                 <td>{{ $stat->user->name ?? '-' }}</td>
                                 <td>{{ $stat->user->team->name ?? '-' }}</td>
                                 <td>{{ $stat->category->name ?? '-' }}</td>
@@ -66,7 +68,12 @@
                                 <td>{{ $stat->leads ?? '-' }}</td>
                                 <td>{{ $stat->conversations ?? '-' }}</td>
                                 <td>{{ $stat->inbound ?? '-' }}</td>
-                                <td>{{ $stat->created_at->format("d-m-Y") ?? '-' }}</td>
+                                <td>
+                                    <a href="{{ route('reports.edit', $stat) }}" class="btn btn-primary btn-sm"><i
+                                            class="fas fa-edit"></i></a>
+                                    <a href="{{ route('reports.destroy', $stat) }}" class="btn btn-primary btn-sm"><i
+                                            class="fas fa-trash"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     @else

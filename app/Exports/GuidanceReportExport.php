@@ -32,13 +32,13 @@ class GuidanceReportExport implements FromView, WithHeadings, ShouldAutoSize
             'Number of Matches',
             'Leads',
             'Conversations',
-            'Inbound'
+            'Inbound',
         ];
     }
 
     public function view(): View
     {
-        return view('export',[
+        return view('reports.export',[
             'stats'=>$this->stats
         ]);
     }
