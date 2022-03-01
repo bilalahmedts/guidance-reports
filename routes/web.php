@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('reports')->group(function () {
+        
         Route::get('/', [GuidanceReportController::class, 'index'])->name('reports.index');
         Route::get('/create', [GuidanceReportController::class, 'create'])->name('reports.create');
         Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails'])->name('reports.get-team-detail');
@@ -34,7 +35,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{stat}', [GuidanceReportController::class, 'edit'])->name('reports.edit');
         Route::post('/update/{stat}', [GuidanceReportController::class, 'update'])->name('reports.update');
         Route::get('/delete/{stat}', [GuidanceReportController::class, 'destroy'])->name('reports.destroy');
-        Route::get('/export', [GuidanceReportController::class, 'export'])->name('reports.export');
+        Route::get('/guidance-reports', [GuidanceReportController::class, 'report'])->name('reports.guidance-reports');
+        Route::post('/guidance-reports', [GuidanceReportController::class, 'getDataByDate'])->name('reports.guidance-reports');
+
     });
 
 });
