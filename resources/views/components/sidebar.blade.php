@@ -12,19 +12,19 @@
         <li class="nav-item">
         <li class="nav-item">
             <a href="{{ route('reports.create') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="far fa fa-plus nav-icon"></i>
                 <p>Create Entry</p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('reports.index') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="far fa fa-eye nav-icon"></i>
                 <p>View Entries</p>
             </a>
         </li>
         <li class="nav-item">
             <a href="{{ route('reports.guidance-reports') }}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="far fa-file nav-icon"></i>
                 <p>View Report</p>
             </a>
         </li>
