@@ -95,6 +95,9 @@ class GuidanceReportController extends Controller
         return back();
     }
 
-    
+    public function export() 
+    {
+        return Excel::download(new GuidanceReportExport, 'guidance-report.xlsx');
+    }
 
 }

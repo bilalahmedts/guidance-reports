@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/{stat}', [GuidanceReportController::class, 'destroy'])->name('reports.destroy');
         Route::get('/guidance-reports', [GuidanceReportController::class, 'report'])->name('reports.guidance-reports');
         Route::post('/guidance-reports', [GuidanceReportController::class, 'getDataByDate'])->name('reports.guidance-reports');
+        Route::get('/export-guidance-reports', [GuidanceReportController::class, 'export'])->name('reports.guidance-report-table');
 
     });
 

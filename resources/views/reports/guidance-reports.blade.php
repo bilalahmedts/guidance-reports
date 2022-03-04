@@ -33,7 +33,8 @@
 
         <form action="{{ route('reports.guidance-reports') }}" method="get" autocomplete="off">
             <input type="hidden" name="search" value="1">
-            <div class="card card-primary card-outline mt-3" id="search" @if (!isset($_GET['search'])) style="display: none;" @endif>
+            <div class="card card-primary card-outline mt-3" id="search"
+                @if (!isset($_GET['search'])) style="display: none;" @endif>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
@@ -63,55 +64,16 @@
 
         <div class="card-header">
             <h3 class="card-title">Guidance Report</h3>
-            <div class="card-tools">
-                <a href="{{-- {{ route('reports.export') }} --}}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i> Export Report
-                </a>
-            </div>
+            @if (count($stats) > 0)
+                <div class="card-tools">
+                    <a href="{{ route('reports.guidance-report-table') }}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-plus"></i> Export Report
+                    </a>
+                </div>
+            @endif
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Agent Name</th>
-                        <th>Team</th>
-                        <th>Campaign</th>
-                        <th>Transfer Per Day</th>
-                        <th>Call Per Day</th>
-                        <th>REA Sign Up</th>
-                        <th>TBD Assigned</th>
-                        <th>Number of Matches</th>
-                        <th>Leads</th>
-                        <th>Conversations</th>
-                        <th>Inbound</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (count($stats) > 0)
-                        @foreach ($stats as $stat)
-                            <tr>
-                                <td>{{ $stat->created_at->format('d-m-Y') ?? '-' }}</td>
-                                <td>{{ $stat->user->name ?? '-' }}</td>
-                                <td>{{ $stat->user->team->name ?? '-' }}</td>
-                                <td>{{ $stat->category->name ?? '-' }}</td>
-                                <td>{{ $stat->transfer_per_day ?? '-' }}</td>
-                                <td>{{ $stat->call_per_day ?? '-' }}</td>
-                                <td>{{ $stat->rea_sign_up ?? '-' }}</td>
-                                <td>{{ $stat->tbd_assigned ?? '-' }}</td>
-                                <td>{{ $stat->no_of_matches ?? '-' }}</td>
-                                <td>{{ $stat->leads ?? '-' }}</td>
-                                <td>{{ $stat->conversations ?? '-' }}</td>
-                                <td>{{ $stat->inbound ?? '-' }}</td>
-                            </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="7" class="text-center">No record found!</td>
-                        </tr>
-                    @endif
-                </tbody>
-            </table>
+            @include('reports.guidance-report-table')
         </div>
         @if ($stats)
             <div class="card-footer clearfix">
