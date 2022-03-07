@@ -66,9 +66,17 @@
             <h3 class="card-title">Guidance Report</h3>
             @if (count($stats) > 0)
                 <div class="card-tools">
-                    <a href="{{ route('reports.guidance-report-table') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus"></i> Export Report
-                    </a>
+                    {{-- this is the way by which we get and send the parameters to the url of a route --}}
+                    @if (isset($_GET['search']))
+                        <a href="{{ route('reports.guidance-report-table') }}?start_date={{ $start_date }}&end_date={{ $end_date }}"
+                            class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i> Export Report
+                        </a>
+                    @else
+                        <a href="{{ route('reports.guidance-report-table') }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-plus"></i> Export Report
+                        </a>
+                    @endif
                 </div>
             @endif
         </div>
