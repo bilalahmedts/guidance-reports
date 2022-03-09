@@ -155,7 +155,12 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->name ?? 'Default' }}</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name ?? 'Default' }}
+                            <br>
+                            <small>
+                                {{ Auth::user()->roles[0]->name ?? '' }}
+                            </small>
+                        </a>
                     </div>
                 </div>
 

@@ -41,6 +41,14 @@ class User extends Authenticatable
     /**
      * The attributes that should be sorted
      */
+
+    protected $guarded = [];
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+    
      public function team()
      {
          return $this->hasOne(Team::class, 'id', 'team_id');

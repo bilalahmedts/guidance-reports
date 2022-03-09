@@ -20,7 +20,7 @@ class RoleController extends Controller
     public function index()
     {
 
-        $roles = Role::sortable()->paginate(5);
+        $roles = Role::paginate(5);
         return view('roles.index', compact('roles'));
     }
 
@@ -80,10 +80,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $roles)
+    public function destroy(Role $role)
     {
-
-        $roles->delete();
+        $role->delete();
         Session::flash('success', 'Role deleted successfully!');
         return redirect()->back();
     }

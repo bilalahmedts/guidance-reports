@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuidanceReportController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Users\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('reports')->group(function () {
-        
         Route::get('/', [GuidanceReportController::class, 'index'])->name('reports.index');
         Route::get('/create', [GuidanceReportController::class, 'create'])->name('reports.create');
         Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails'])->name('reports.get-team-detail');
@@ -38,7 +39,24 @@ Route::middleware('auth')->group(function () {
         Route::get('/guidance-reports', [GuidanceReportController::class, 'report'])->name('reports.guidance-reports');
         Route::post('/guidance-reports', [GuidanceReportController::class, 'getDataByDate'])->name('reports.guidance-reports');
         Route::get('/export-guidance-reports', [GuidanceReportController::class, 'export'])->name('reports.guidance-report-table');
+    });
 
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/store', [UserController::class, 'store'])->name('users.store');
+        Route::get('/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/edit/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::get('/delete/{user}', [UserController::class, 'destroy'])->name('users.delete');
+    });
+    
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [RoleController::class, 'index'])->name('roles.index');
+        Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
+        Route::post('/store', [RoleController::class, 'store'])->name('roles.store');
+        Route::get('/edit/{role}', [RoleController::class, 'edit'])->name('roles.edit');
+        Route::put('/edit/{role}', [RoleController::class, 'update'])->name('roles.update');
+        Route::get('/delete/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
     });
 
 });

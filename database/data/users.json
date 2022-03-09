@@ -1,102 +1,141 @@
-[
-    {
+[{
         "name": "Huma ARSHAD",
-        "hrms_id" : "170442",
-        "team_id": "2"
+        "hrms_id": "170442",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "LAVIZA FATIMA",
-        "hrms_id" : "50966",
-        "team_id": "2"
+        "hrms_id": "50966",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "M TABRAIZ ANJUM",
-        "hrms_id" : "983441",
-        "team_id": "2"
+        "hrms_id": "983441",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "Maheen Arshad Khan",
-        "hrms_id" : "401372",
-        "team_id": "2"
+        "hrms_id": "401372",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "Mohammed Humza Bin Zulfiqar",
-        "hrms_id" : "942633",
-        "team_id": "2"
+        "hrms_id": "942633",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "MUHAMMAD SAAD TANVEER",
-        "hrms_id" : "959265",
-        "team_id": "2"
+        "hrms_id": "959265",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "NIMRA ALEEM",
-        "hrms_id" : "223202",
-        "team_id": "2"
+        "hrms_id": "223202",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "REHMAN NAWAZ",
-        "hrms_id" : "374129",
-        "team_id": "2"
+        "hrms_id": 374129,
+        "team_id": "2",
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "Saher Gloria Qamar",
-        "hrms_id" : "676620",
-        "team_id": "2"
+        "hrms_id": "676620",
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "SEYED HASSAN RAZAVI",
-        "hrms_id" : "11125",
-        "team_id": "2"
+        "hrms_id": 11125,
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "SUNDAS ASLAM",
-        "hrms_id" : "518106",
-        "team_id": "2"
+        "hrms_id": 518106,
+        "team_id": 2,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "HAFSA AAMIR",
-        "hrms_id" : "317432",
-        "team_id": "3"
+        "hrms_id": "317432",
+        "team_id": 3,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "HYDER QASIM KHAN",
-        "hrms_id" : "684605",
-        "team_id": "3"
+        "hrms_id": "684605",
+        "team_id": 3,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "TABITHA SOMMER ALBERT",
-        "hrms_id" : "74026",
-        "team_id": "3"
+        "hrms_id": "74026",
+        "team_id": 3,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "AMMARA BRAIKHNA",
-        "hrms_id" : "649128",
-        "team_id": "4"
+        "hrms_id": "649128",
+        "team_id": 4,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "Hassan Khan",
-        "hrms_id" : "391219",
-        "team_id": "4"
+        "hrms_id": "391219",
+        "team_id": 4,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "SUFYAN NAZIR",
-        "hrms_id" : "658803",
-        "team_id": "4"
+        "hrms_id": "658803",
+        "team_id": 4,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "MUHAMMAD AYAZ",
-        "hrms_id" : "408049",
-        "team_id": "5"
+        "hrms_id": "408049",
+        "team_id": 5,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "RABBIA KHAN",
-        "hrms_id" : "499696",
-        "team_id": "5"
+        "hrms_id": "499696",
+        "team_id": 5,
+        "role": "Associate",
+        "status":"Active"
     },
     {
         "name": "HASSAN RAZA HASHMI",
-        "hrms_id" : "593215",
-        "team_id": "1"
+        "hrms_id": "593215",
+        "team_id": 1,
+        "role": "Associate",
+        "status":"Active"
     }
 ]
