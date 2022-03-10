@@ -52,7 +52,42 @@
                 @endif
                 @if ($stat->user->team->name == 'Team Two')
                     <div id="team_two">
-                        <div class="form-group">
+                        @foreach ($categories as $category)
+                        <div id="accordion">
+                            <div class="card card-secondary">
+                                <div class="card-header">
+                                    <h4 class="card-title w-100">
+                                        <a class="d-block w-100" data-toggle="collapse"
+                                            href="#category-{{ $category->id }}">
+                                            {{ $category->name }}
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="category-{{ $category->id }}" class="collapse" {{-- data-parent="#accordion" --}}>
+                                    <div class="card-body">
+                                        <input type="hidden" class="form-control" name="category[]" value="{{ $category->id }}">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Number of Calls Per Day</label>
+                                            <input type="text" class="form-control" name="call_per_day[]"
+                                                placeholder="Number of Calls Per Day" id="call_per_day" value="{{ $stat->call_per_day }}">
+                                        </div>
+                                        @error('call_per_day')
+                                            <div class="validate-error">{{ $message }}</div>
+                                        @enderror
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Number of Transfers Per Day</label>
+                                            <input type="text" class="form-control" name="transfer_per_day[]"
+                                                placeholder="Enter Number of Transfers Per Day" id="transfer_per_day" value="{{ $stat->transfer_per_day }}">
+                                        </div>
+                                        @error('transfer_per_day')
+                                            <div class="validate-error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+{{--                         <div class="form-group">
                             <label for="exampleInputEmail1">Category Name</label>
                             <select name="categories_id" class="form-control select2" id="category">
                                 <option value="">Select Option</option>
@@ -82,7 +117,7 @@
                             @error('transfer_per_day')
                                 <div class="validate-error">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                 @endif
                 @if ($stat->user->team->name == 'Team Three')
