@@ -47,7 +47,29 @@ class GuidanceReportController extends Controller
             Session::flash('warning', 'Record already exists for current date');
             return redirect()->route('reports.index');           
         }
-        GuidanceReport::create($request->all());
+        
+        foreach ($request->category as $key => $value) {
+           $catgeory_id = $request->category[$key];
+           $call_per_day = $request->call_per_day[$key];
+           $transfer_per_day = $request->transfer_per_day[$key];
+           if (!empty($call_per_day) && !empty($transfer_per_day)) {
+                GuidanceReport::create([
+                    "user_id" => $request->user_id,
+                    "categories_id" => $catgeory_id,
+                    "call_per_day" => $call_per_day,
+                    "transfer_per_day" => $transfer_per_day,
+                ]);
+            } 
+        }
+        GuidanceReport::create([
+            "user_id" => $request->user_id,
+                "rea_sign_up" => $request->rea_sign_up,
+                "tbd_assigned" => $request->tbd_assigned,
+                "no_of_matches" => $request->no_of_matches,
+                "leads" => $request->leads,
+                "conversations" => $request->conversations,
+                "inbound" => $request->inbound
+        ]);
         Session::flash('success', 'Data Added successfully!');
         return redirect()->route('reports.index');
     }

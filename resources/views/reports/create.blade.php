@@ -5,12 +5,13 @@
     @section('content')
 
 
-{{--     @if($errors->any())
+        {{-- @if ($errors->any())
     {{ implode('', $errors->all('<div>:message</div>')) }}
 @endif --}}
 
         <div class="back-area mb-3">
-            <a href="{{ route('reports.index') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left mr-2"></i> Go
+            <a href="{{ route('reports.index') }}" class="btn btn-secondary btn-sm"><i class="fas fa-arrow-left mr-2"></i>
+                Go
                 Back</a>
         </div>
         <div class="card">
@@ -45,7 +46,44 @@
                         @enderror
                     </div>
                     <div id="team_two" style="display: none">
-                        <div class="form-group">
+
+                        <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
+                        @foreach ($categories as $category)
+                            <div id="accordion">
+                                <div class="card card-secondary">
+                                    <div class="card-header">
+                                        <h4 class="card-title w-100">
+                                            <a class="d-block w-100" data-toggle="collapse"
+                                                href="#category-{{ $category->id }}">
+                                                {{ $category->name }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="category-{{ $category->id }}" class="collapse" {{-- data-parent="#accordion" --}}>
+                                        <div class="card-body">
+                                            <input type="hidden" class="form-control" name="category[]" value="{{ $category->id }}">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Number of Calls Per Day</label>
+                                                <input type="text" class="form-control" name="call_per_day[]"
+                                                    placeholder="Number of Calls Per Day" id="call_per_day">
+                                            </div>
+                                            @error('call_per_day')
+                                                <div class="validate-error">{{ $message }}</div>
+                                            @enderror
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Number of Transfers Per Day</label>
+                                                <input type="text" class="form-control" name="transfer_per_day[]"
+                                                    placeholder="Enter Number of Transfers Per Day" id="transfer_per_day">
+                                            </div>
+                                            @error('transfer_per_day')
+                                                <div class="validate-error">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        {{-- <div class="form-group">
                             <label for="exampleInputEmail1">Category Name</label>
                             <select name="categories_id" class="form-control select2" id="category">
                                 <option value="">Select Option</option>
@@ -53,8 +91,8 @@
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                        <div id="team_two_category" style="display: none">
+                        </div> --}}
+                        {{-- <div id="team_two_category" style="display: none">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Number of Calls Per Day</label>
                                 <input type="text" class="form-control" name="call_per_day"
@@ -71,7 +109,7 @@
                             @error('transfer_per_day')
                                 <div class="validate-error">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <div id="team_three" style="display: none">
                         <div class="form-group">

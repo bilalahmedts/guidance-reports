@@ -37,7 +37,6 @@ class UserController extends Controller
     {
         $roles = Role::all();
         $teams = Team::all();
-
         return view('users.edit', compact('user','roles','teams'));
     }
 
@@ -50,6 +49,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if($request->has('password')){
+            dd($request->password);
+        }
         $roles = explode(',', $request->role);
         $user->update($request->except('role'));
         $user->syncRoles($roles);

@@ -37,7 +37,7 @@
                 @enderror
                 <div class="form-group">
                     <label for="exampleInputEmail1">Password</label>
-                    <input type="password" class="form-control" name="password" value="{{ $user->password }}" required>
+                    <input type="password" class="form-control" name="password">
                 </div>
                 @error('password')
                     <div class="validate-error">{{ $message }}</div>
