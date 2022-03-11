@@ -17,10 +17,17 @@ use Illuminate\Http\Request;
 
 class GuidanceReportController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+
+        if ($request->has('user_id')) {
+            if (!empty($request->user_id)) {
+                $query = $query->where('user_id', 'LIKE', "%{$request->user_id}%");
+            }
+        }
+        $users = User::where('id', '!=', 1)->get();
         $stats = GuidanceReport::sortable()->paginate(10);
-        return view('reports.index', compact('stats'));
+        return view('reports.index', compact('stats','users'));
     }
 
     public function create()
