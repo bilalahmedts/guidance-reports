@@ -15,7 +15,6 @@
     @endif
 
     <div class="card card-primary card-outline">
-
         <div class="card-header">
             <h3 class="card-title">Guidance Report</h3>
             <div class="card-tools">
@@ -39,7 +38,6 @@
                         <th>Number of Matches</th>
                         <th>Leads</th>
                         <th>Conversations</th>
-                        <th>Inbound</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -58,7 +56,6 @@
                                 <td>{{ $stat->no_of_matches ?? '-' }}</td>
                                 <td>{{ $stat->leads ?? '-' }}</td>
                                 <td>{{ $stat->conversations ?? '-' }}</td>
-                                <td>{{ $stat->inbound ?? '-' }}</td>
                                 <td>
                                     <a href="{{ route('reports.edit', $stat) }}" class="btn btn-primary btn-sm"><i
                                             class="fas fa-edit"></i></a>

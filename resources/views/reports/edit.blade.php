@@ -3,8 +3,6 @@
 @section('title', 'Edit Guidance Reports')
 
 @section('content')
-
-
     {{-- @if ($errors->any())
 {{ implode('', $errors->all('<div>:message</div>')) }}
 @endif --}}
@@ -50,46 +48,45 @@
                         @enderror
                     </div>
                 @endif
-                @if ($stat->user->team->name == 'Team Two')
+                @if ($stat->user->team->name == 'Team Two' || $stat->user->team->name == 'Team Inbound')
                     <div id="team_two">
-                        @foreach ($categories as $category)
-                            <div id="accordion">
-                                <div class="card card-secondary">
-                                    <div class="card-header">
-                                        <h4 class="card-title w-100">
-                                            <a class="d-block w-100" data-toggle="collapse"
-                                                href="#category-{{ $category->id }}">
-                                                {{ $category->name }}
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="category-{{ $category->id }}" class="collapse" {{-- data-parent="#accordion" --}}>
-                                        <div class="card-body">
-                                            <input type="hidden" class="form-control" name="category[]"
-                                                value="{{ $category->id }}">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Number of Calls Per Day</label>
-                                                <input type="text" class="form-control" name="call_per_day[]"
-                                                    placeholder="Number of Calls Per Day" id="call_per_day"
-                                                    value="{{ $stat->call_per_day }}">
-                                            </div>
-                                            @error('call_per_day')
-                                                <div class="validate-error">{{ $message }}</div>
-                                            @enderror
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Number of Transfers Per Day</label>
-                                                <input type="text" class="form-control" name="transfer_per_day[]"
-                                                    placeholder="Enter Number of Transfers Per Day" id="transfer_per_day"
-                                                    value="{{ $stat->transfer_per_day }}">
-                                            </div>
-                                            @error('transfer_per_day')
-                                                <div class="validate-error">{{ $message }}</div>
-                                            @enderror
+                        <div id="accordion">
+                            <div class="card card-secondary">
+                                <div class="card-header">
+                                    <h4 class="card-title w-100">
+                                        <a class="d-block w-100" data-toggle="collapse"
+                                            href="#category-{{ $stat->category->id }}">
+                                            {{ $stat->category->name }}
+                                        </a>
+                                    </h4>
+                                </div>
+
+                                <div id="category-{{ $stat->category->name }}" class="collapse show">
+                                    <div class="card-body">
+                                        <input type="hidden" class="form-control" name="category"
+                                            value="{{ $stat->category->id }}">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Number of Calls Per Day</label>
+                                            <input type="text" class="form-control" name="call_per_day"
+                                                placeholder="Number of Calls Per Day" id="call_per_day"
+                                                value="{{ $stat->call_per_day }}">
                                         </div>
+                                        @error('call_per_day')
+                                            <div class="validate-error">{{ $message }}</div>
+                                        @enderror
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Number of Transfers Per Day</label>
+                                            <input type="text" class="form-control" name="transfer_per_day"
+                                                placeholder="Enter Number of Transfers Per Day" id="transfer_per_day"
+                                                value="{{ $stat->transfer_per_day }}">
+                                        </div>
+                                        @error('transfer_per_day')
+                                            <div class="validate-error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
                 @endif
                 @if ($stat->user->team->name == 'Team Three')
@@ -130,18 +127,6 @@
                                 value="{{ $stat->conversations }}">
                         </div>
                         @error('conversations')
-                            <div class="validate-error">{{ $message }}</div>
-                        @enderror
-                    </div>
-                @endif
-                @if ($stat->user->team->name == 'Team Inbound')
-                    <div id="team_inbound">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Inbounds</label>
-                            <input type="text" class="form-control" name="inbound" placeholder="Enter Number of Inbounds"
-                                id="inbounds" value="{{ $stat->inbound }}">
-                        </div>
-                        @error('inbound')
                             <div class="validate-error">{{ $message }}</div>
                         @enderror
                     </div>

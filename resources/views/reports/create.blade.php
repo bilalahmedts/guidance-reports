@@ -4,7 +4,6 @@
 
     @section('content')
 
-
         {{-- @if ($errors->any())
     {{ implode('', $errors->all('<div>:message</div>')) }}
 @endif --}}
@@ -18,7 +17,6 @@
             <div class="card-header">
                 <h3 class="card-title">Create Guidance Report</h3>
             </div>
-
             <form action="{{ route('reports.store') }}" method="post" autocomplete="off">
                 @csrf
                 <div class="card-body">
@@ -45,9 +43,7 @@
                             <div class="validate-error">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div id="team_two" style="display: none">
-
-                        <!-- we are adding the accordion ID so Bootstrap's collapse plugin detects it -->
+                    <div id="team_two_inbound" style="display: none">
                         @foreach ($categories as $category)
                             <div id="accordion">
                                 <div class="card card-secondary">
@@ -61,7 +57,8 @@
                                     </div>
                                     <div id="category-{{ $category->id }}" class="collapse" {{-- data-parent="#accordion" --}}>
                                         <div class="card-body">
-                                            <input type="hidden" class="form-control" name="category[]" value="{{ $category->id }}">
+                                            <input type="hidden" class="form-control" name="category[]"
+                                                value="{{ $category->id }}">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Number of Calls Per Day</label>
                                                 <input type="text" class="form-control" name="call_per_day[]"
@@ -83,33 +80,6 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{-- <div class="form-group">
-                            <label for="exampleInputEmail1">Category Name</label>
-                            <select name="categories_id" class="form-control select2" id="category">
-                                <option value="">Select Option</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                        </div> --}}
-                        {{-- <div id="team_two_category" style="display: none">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Number of Calls Per Day</label>
-                                <input type="text" class="form-control" name="call_per_day"
-                                    placeholder="Number of Calls Per Day" id="call_per_day">
-                            </div>
-                            @error('call_per_day')
-                                <div class="validate-error">{{ $message }}</div>
-                            @enderror
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Number of Transfers Per Day</label>
-                                <input type="text" class="form-control" name="transfer_per_day"
-                                    placeholder="Enter Number of Transfers Per Day" id="transfer_per_day">
-                            </div>
-                            @error('transfer_per_day')
-                                <div class="validate-error">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
                     </div>
                     <div id="team_three" style="display: none">
                         <div class="form-group">
@@ -147,16 +117,6 @@
                             <div class="validate-error">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div id="team_inbound" style="display: none">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Inbounds</label>
-                            <input type="text" class="form-control" name="inbound" placeholder="Enter Number of Inbounds"
-                                id="inbounds">
-                        </div>
-                        @error('inbound')
-                            <div class="validate-error">{{ $message }}</div>
-                        @enderror
-                    </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -181,14 +141,14 @@
                             team_type = team.team_id;
                             if (team_type == 1) {
                                 $('#team_one').show()
-                                $('#team_two').hide()
+                                $('#team_two_inbound').hide()
                                 $('#team_three').hide()
                                 $('#team_chat').hide()
                                 $('#team_inbound').hide()
                             }
                             if (team_type == 2) {
                                 $('#team_one').hide()
-                                $('#team_two').show()
+                                $('#team_two_inbound').show()
 
                                 $('#team_three').hide()
                                 $('#team_chat').hide()
@@ -196,14 +156,14 @@
                             }
                             if (team_type == 3) {
                                 $('#team_one').hide()
-                                $('#team_two').hide()
+                                $('#team_two_inbound').hide()
                                 $('#team_three').show()
                                 $('#team_chat').hide()
                                 $('#team_inbound').hide()
                             }
                             if (team_type == 4) {
                                 $('#team_one').hide()
-                                $('#team_two').hide()
+                                $('#team_two_inbound').hide()
                                 $('#team_three').hide()
                                 $('#team_chat').show()
                                 $('#team_inbound').hide()
@@ -213,7 +173,7 @@
                                 $('#team_two').hide()
                                 $('#team_three').hide()
                                 $('#team_chat').hide()
-                                $('#team_inbound').show()
+                                $('#team_two_inbound').show()
                             }
                         }
                     })

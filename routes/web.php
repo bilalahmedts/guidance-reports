@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails'])->name('reports.get-team-detail');
         Route::post('/store', [GuidanceReportController::class, 'store'])->name('reports.store');
         Route::get('/edit/{stat}', [GuidanceReportController::class, 'edit'])->name('reports.edit');
-        Route::post('/update/{stat}', [GuidanceReportController::class, 'update'])->name('reports.update');
+        Route::put('/update/{stat}', [GuidanceReportController::class, 'update'])->name('reports.update');
         Route::get('/delete/{stat}', [GuidanceReportController::class, 'destroy'])->name('reports.destroy');
         Route::get('/guidance-reports', [GuidanceReportController::class, 'report'])->name('reports.guidance-reports');
         Route::post('/guidance-reports', [GuidanceReportController::class, 'getDataByDate'])->name('reports.guidance-reports');

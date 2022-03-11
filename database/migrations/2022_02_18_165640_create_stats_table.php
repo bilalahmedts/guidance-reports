@@ -24,7 +24,6 @@ class CreateStatsTable extends Migration
             $table->integer('no_of_matches')->nullable();
             $table->integer('leads')->nullable();
             $table->integer('conversations')->nullable();
-            $table->integer('inbound')->nullable();
             $table->timestamps();
         });
     }
