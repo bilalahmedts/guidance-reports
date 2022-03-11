@@ -8,10 +8,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Team;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
-
-
 class UserController extends Controller
 {
     public function index()
@@ -49,12 +46,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if($request->has('password')){
-            dd($request->password);
-        }
         $roles = explode(',', $request->role);
+        if (empty($request->password)) {    
+        $user->update($request->except('role','password'));
+        } else {
         $user->update($request->except('role'));
-        $user->syncRoles($roles);
+        }
+        $user->syncRoles($roles);    
         Session::flash('success', 'User updated successfully!');
         return redirect()->route('users.index');
     }
