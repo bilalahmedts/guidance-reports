@@ -25,7 +25,7 @@ class GuidanceReportController extends Controller
 
     public function create()
     {
-        $users = User::all();
+        $users = User::where('id', '!=', 1)->get();
         $categories = Category::all();
         return view('reports.create', compact('users', 'categories'));
     }
@@ -73,7 +73,7 @@ class GuidanceReportController extends Controller
 
     public function edit(GuidanceReport $stat)
     {
-        $users = User::all();
+        $users = User::where('id', '!=', 1)->get();
         $categories = Category::all();
         return view('reports.edit', compact('stat', 'users', 'categories'));
     }
