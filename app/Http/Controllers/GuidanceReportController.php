@@ -19,7 +19,7 @@ class GuidanceReportController extends Controller
 {
     public function index()
     {
-        $stats = GuidanceReport::paginate(10);
+        $stats = GuidanceReport::sortable()->paginate(10);
         return view('reports.index', compact('stats'));
     }
 
