@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 class GuidanceReportController extends Controller
 {
     public function index()
-    {   
+    {
         $stats = GuidanceReport::paginate(10);
         return view('reports.index', compact('stats'));
     }
@@ -27,7 +27,7 @@ class GuidanceReportController extends Controller
     {
         $users = User::all();
         $categories = Category::all();
-        return view('reports.create', compact('users','categories'));
+        return view('reports.create', compact('users', 'categories'));
     }
 
     public function getUserTeamDetails($id)
@@ -45,31 +45,28 @@ class GuidanceReportController extends Controller
         $stats = GuidanceReport::where('user_id', $request->user_id)->whereDate('created_at', now())->count();
         if ($stats > 0) {
             Session::flash('warning', 'Record already exists for current date');
-            return redirect()->route('reports.index');           
+            return redirect()->route('reports.index');
         }
-        
-        foreach ($request->category as $key => $value) {
-           $catgeory_id = $request->category[$key];
-           $call_per_day = $request->call_per_day[$key];
-           $transfer_per_day = $request->transfer_per_day[$key];
-           if (!empty($call_per_day) && !empty($transfer_per_day)) {
-                GuidanceReport::create([
-                    "user_id" => $request->user_id,
-                    "categories_id" => $catgeory_id,
-                    "call_per_day" => $call_per_day,
-                    "transfer_per_day" => $transfer_per_day,
-                ]);
-            } 
+        if ((!empty($request->call_per_day[0]) && !empty($request->transfer_per_day[0])) ||
+            (!empty($request->call_per_day[1]) && !empty($request->transfer_per_day[1])) || (!empty($request->call_per_day[2])
+                && !empty($request->transfer_per_day[2]))
+        ) {
+            foreach ($request->category as $key => $value) {
+                $catgeory_id = $request->category[$key];
+                $call_per_day = $request->call_per_day[$key];
+                $transfer_per_day = $request->transfer_per_day[$key];
+                if (!empty($catgeory_id) && !empty($call_per_day) && !empty($transfer_per_day)) {
+                    GuidanceReport::create([
+                        "user_id" => $request->user_id,
+                        "categories_id" => $catgeory_id,
+                        "call_per_day" => $call_per_day,
+                        "transfer_per_day" => $transfer_per_day,
+                    ]);
+                }
+            }
+        } else {
+            GuidanceReport::create($request->except('category', 'call_per_day', 'transfer_per_day'));
         }
-        GuidanceReport::create([
-            "user_id" => $request->user_id,
-                "rea_sign_up" => $request->rea_sign_up,
-                "tbd_assigned" => $request->tbd_assigned,
-                "no_of_matches" => $request->no_of_matches,
-                "leads" => $request->leads,
-                "conversations" => $request->conversations,
-                "inbound" => $request->inbound
-        ]);
         Session::flash('success', 'Data Added successfully!');
         return redirect()->route('reports.index');
     }
@@ -108,16 +105,14 @@ class GuidanceReportController extends Controller
                 $query = $query->whereDate('created_at', $start_date->toDateString());
             }
             $stats = $query->paginate(10);
-        }
-        else{
+        } else {
             $stats = array();
         }
         return view('reports.guidance-reports', compact('stats'));
     }
 
-    public function export(Request $request) 
+    public function export(Request $request)
     {
         return Excel::download(new GuidanceReportExport($request), 'guidance-report.xlsx');
     }
-
 }
