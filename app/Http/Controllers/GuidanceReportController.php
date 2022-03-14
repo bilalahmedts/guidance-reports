@@ -45,10 +45,7 @@ class GuidanceReportController extends Controller
 
     public function create()
     {
-        if (Auth::user()->roles[0]->name == 'Associate') {
-            $users = User::where('id', Auth::user()->id)->get();
-        }
-        /* $users = User::where('id', '!=', 1)->get(); */
+        $users = User::where('id', '!=', 1)->get();
         $categories = Category::all();
         return view('reports.create', compact('users', 'categories'));
     }
