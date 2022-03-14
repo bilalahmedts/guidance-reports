@@ -31,24 +31,21 @@
             $user_id = '';
             $start_date = '';
             $end_date = '';
-            
             if (isset($_GET['user_id'])) {
                 $user_id = $_GET['user_id'];
             }
-            if (isset($_GET['search'])) {
-                if (!empty($_GET['start_date'])) {
+            if (!empty($_GET['start_date'])) {
                     $start_date = $_GET['start_date'];
                 }
                 if (!empty($_GET['end_date'])) {
                     $end_date = $_GET['end_date'];
                 }
-            }
         @endphp
 
         <form action="{{ route('reports.index') }}" method="get" autocomplete="off">
             <input type="hidden" name="search" value="1">
-            <div class="card card-primary card-outline mt-3" id="search" <blade
-                if|%20(!isset(%24_GET%5B%26%2339%3Bsearch%26%2339%3B%5D))%20style%3D%26%2334%3Bdisplay%3A%20none%3B%26%2334%3B%20%40endif%3E%0D>
+            <div class="card card-primary card-outline mt-3" id="search"
+                @if (!isset($_GET['search'])) style="display: none;" @endif>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
