@@ -6,7 +6,7 @@ use App\Http\Controllers\GuidanceReportController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Users\RoleController;
-
+use App\Http\Controllers\Users\TeamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +57,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/{role}', [RoleController::class, 'edit'])->name('roles.edit');
         Route::put('/edit/{role}', [RoleController::class, 'update'])->name('roles.update');
         Route::get('/delete/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
+    });
+
+    Route::prefix('teams')->group(function () {
+        Route::get('/', [TeamController::class, 'index'])->name('teams.index');
+        Route::get('/create', [TeamController::class, 'create'])->name('teams.create');
+        Route::post('/store', [TeamController::class, 'store'])->name('teams.store');
+        Route::get('/edit/{team}', [TeamController::class, 'edit'])->name('teams.edit');
+        Route::put('/edit/{team}', [TeamController::class, 'update'])->name('teams.update');
+        Route::get('/delete/{team}', [TeamController::class, 'destroy'])->name('teams.destroy');
     });
 
 });
