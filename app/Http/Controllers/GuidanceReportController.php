@@ -19,14 +19,27 @@ class GuidanceReportController extends Controller
 {
     public function index(Request $request)
     {
-
+        $query = new GuidanceReport;
         if ($request->has('user_id')) {
             if (!empty($request->user_id)) {
                 $query = $query->where('user_id', 'LIKE', "%{$request->user_id}%");
             }
         }
+        if ($request->has('start_date')) {
+            if (!empty($request->start_date) && !empty($request->end_date)) {
+                $start_date = Carbon::createFromFormat('d/m/Y', $request->start_date);
+                $end_date = Carbon::createFromFormat('d/m/Y', $request->end_date);
+                $query = $query->whereDate('created_at', '>=', $start_date->toDateString());
+                $query = $query->whereDate('created_at', '<=', $end_date->toDateString());
+            } elseif (!empty($request->start_date)) {
+                $start_date = Carbon::createFromFormat('d/m/Y', $request->start_date);
+                $query = $query->whereDate('created_at', $start_date->toDateString());
+            }
+            $stats = $query->paginate(10);
+        }
+        
         $users = User::where('id', '!=', 1)->get();
-        $stats = GuidanceReport::sortable()->paginate(10);
+        $stats = $query->sortable()->paginate(10);
         return view('reports.index', compact('stats','users'));
     }
 
