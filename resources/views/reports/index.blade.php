@@ -35,11 +35,11 @@
                 $user_id = $_GET['user_id'];
             }
             if (!empty($_GET['start_date'])) {
-                    $start_date = $_GET['start_date'];
-                }
-                if (!empty($_GET['end_date'])) {
-                    $end_date = $_GET['end_date'];
-                }
+                $start_date = $_GET['start_date'];
+            }
+            if (!empty($_GET['end_date'])) {
+                $end_date = $_GET['end_date'];
+            }
         @endphp
 
         <form action="{{ route('reports.index') }}" method="get" autocomplete="off">
@@ -126,8 +126,10 @@
                                 <td>
                                     <a href="{{ route('reports.edit', $stat) }}" class="btn btn-primary btn-sm"><i
                                             class="fas fa-edit"></i></a>
-                                    <a href="{{ route('reports.destroy', $stat) }}" class="btn btn-primary btn-sm"><i
-                                            class="fas fa-trash"></i></a>
+                                    @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
+                                        <a href="{{ route('reports.destroy', $stat) }}" class="btn btn-primary btn-sm"><i
+                                                class="fas fa-trash"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
