@@ -124,9 +124,10 @@
                                 <td>{{ $stat->leads ?? '-' }}</td>
                                 <td>{{ $stat->conversations ?? '-' }}</td>
                                 <td>
-                                    <a href="{{ route('reports.edit', $stat) }}" class="btn btn-primary btn-sm"><i
-                                            class="fas fa-edit"></i></a>
-                                    @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
+                                    @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead']))
+                                        <a href="{{ route('reports.edit', $stat) }}" class="btn btn-primary btn-sm"><i
+                                                class="fas fa-edit"></i></a>
+
                                         <a href="{{ route('reports.destroy', $stat) }}" class="btn btn-primary btn-sm"><i
                                                 class="fas fa-trash"></i></a>
                                     @endif
