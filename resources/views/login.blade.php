@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <link rel="icon" href="{{ asset('img/touchstone-icon.jpg') }}" type="image/x-icon">
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
@@ -53,14 +54,6 @@
                   <div class="validate-error">{{ $message }}</div>
               @enderror
               <div class="row">
-                <div class="col-12">
-                  <div class="icheck-primary">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">
-                      Remember Me
-                    </label>
-                  </div>
-                </div>
                 <!-- /.col -->
                 <div class="col-12">
                   <button type="submit" class="btn btn-block btn-primary mt-3">Sign In</button>
