@@ -38,6 +38,7 @@
                 </p>
             </a>
             <ul class="nav nav-treeview">
+                @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
                 <li class="nav-item">
                     <a href="{{ route('users.index') }}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -50,7 +51,6 @@
                         <p>Teams</p>
                     </a>
                 </li>
-                @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
                     <li class="nav-item">
                         <a href="{{ route('roles.index') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
