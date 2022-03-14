@@ -22,6 +22,7 @@
                 <p>View Entries</p>
             </a>
         </li>
+        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
         <li class="nav-item">
             <a href="{{ route('reports.guidance-reports') }}" class="nav-link">
                 <i class="far fa-file nav-icon"></i>
@@ -29,7 +30,6 @@
             </a>
         </li>
         </li>
-        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
