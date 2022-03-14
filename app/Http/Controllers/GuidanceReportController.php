@@ -7,13 +7,11 @@ use App\Models\User;
 use App\Models\GuidanceReport;
 use App\Http\Requests\GuidanceReportRequest;
 use App\Exports\GuidanceReportExport;
-
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Session;
-
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class GuidanceReportController extends Controller
 {
@@ -37,15 +35,20 @@ class GuidanceReportController extends Controller
             }
             $stats = $query->paginate(10);
         }
-        
+        if (Auth::user()->roles[0]->name == 'Associate') {
+            $query = $query->where('user_id',Auth::user()->id);
+        }
         $users = User::where('id', '!=', 1)->get();
         $stats = $query->sortable()->paginate(10);
-        return view('reports.index', compact('stats','users'));
+        return view('reports.index', compact('stats', 'users'));
     }
 
     public function create()
     {
-        $users = User::where('id', '!=', 1)->get();
+        if (Auth::user()->roles[0]->name == 'Associate') {
+            $users = User::where('id', Auth::user()->id)->get();
+        }
+        /* $users = User::where('id', '!=', 1)->get(); */
         $categories = Category::all();
         return view('reports.create', compact('users', 'categories'));
     }
