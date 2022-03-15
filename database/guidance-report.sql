@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2022 at 03:08 PM
+-- Generation Time: Mar 15, 2022 at 12:41 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -201,7 +201,6 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'web', NULL, NULL),
-(2, 'Director', 'web', NULL, NULL),
 (3, 'Manager', 'web', NULL, NULL),
 (4, 'Team Lead', 'web', NULL, NULL),
 (5, 'Associate', 'web', NULL, NULL);
@@ -243,9 +242,8 @@ CREATE TABLE `stats` (
 --
 
 INSERT INTO `stats` (`id`, `user_id`, `categories_id`, `transfer_per_day`, `call_per_day`, `rea_sign_up`, `tbd_assigned`, `no_of_matches`, `leads`, `conversations`, `created_at`, `updated_at`) VALUES
-(60, 8, 1, 200, 50, NULL, NULL, NULL, NULL, NULL, '2022-03-11 19:05:29', '2022-03-11 20:00:16'),
-(61, 8, 2, 400, 300, NULL, NULL, NULL, NULL, NULL, '2022-03-11 19:05:29', '2022-03-11 19:05:29'),
-(62, 8, 3, 600, 500, NULL, NULL, NULL, NULL, NULL, '2022-03-11 19:05:29', '2022-03-11 19:05:29');
+(2, 4, 1, 22, 11, NULL, NULL, NULL, NULL, NULL, '2022-03-15 16:23:42', '2022-03-15 16:23:42'),
+(3, 19, 1, 11, 11, NULL, NULL, NULL, NULL, NULL, '2022-03-15 16:32:52', '2022-03-15 16:32:52');
 
 -- --------------------------------------------------------
 
@@ -269,7 +267,8 @@ INSERT INTO `teams` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (2, 'Team Two', NULL, NULL),
 (3, 'Team Three', NULL, NULL),
 (4, 'Team Chat', NULL, NULL),
-(5, 'Team Inbound', NULL, NULL);
+(5, 'Team Inbound', NULL, NULL),
+(8, '-', '2022-03-15 16:39:28', '2022-03-15 16:40:09');
 
 -- --------------------------------------------------------
 
@@ -296,10 +295,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `hrms_id`, `team_id`, `status`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@touchstone.com.pk', '$2y$10$YkZlGc9jWfyP5/NIeBDNee1evb6BK4w7JqRJX0oQmo5Ad7Z4GyWtO', NULL, NULL, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 01:22:21'),
-(2, 'Huma ARSHAD', 'everett.miller@example.net', '$2y$10$FJ1IH6gCKg/iq3NZWUvwP.SzfawOxLeEji7SgoAM4Suy3JZCD217.', 170442, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 01:22:21'),
-(3, 'LAVIZA FATIMA', 'twisoky@example.com', '$2y$10$K9RYeGparYDVj3EX8g0.MeHl.eCT2nWEjDfpb5mtmCwmTu0X4R42y', 50966, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 01:22:21'),
-(4, 'M TABRAIZ ANJUM', 'jo86@example.net', '$2y$10$BRzf/dVPFRU3NFoCa0d6EeRPvyMsCFN6rF5KHJW.gEZvoFnOe2bzC', 983441, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 01:22:21'),
+(1, 'Admin', 'admin@touchstone.com.pk', '$2y$10$av5XxWvluAU/o5JvKVAvh.1UC8NqJAI44x1aARAqb5btnTJzkYexm', 896075, 8, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-15 16:39:43'),
+(2, 'Huma ARSHAD', 'huma@example.net', '$2y$10$4RuYjNzS16b60AN6N6HSi.nBNFLAKjDpuIWSPZhYt9.chl5RZioEG', 170442, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-14 19:48:26'),
+(3, 'LAVIZA FATIMA', 'twisoky@example.com', '$2y$10$k4PsqMKT04onEwtY4GPPKO.XnssBZPLsIhM6VFuyPSxIIt3mMVnE.', 50966, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 22:43:24'),
+(4, 'M TABRAIZ ANJUM', 'jo86@example.net', '$2y$10$UqCBaDVuZGuvORDRGOeleePQFTxzsbMNxsyQ2GbQLdDbjwFmURZf6', 983441, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 01:22:21'),
 (5, 'Maheen Arshad Khan', 'jammie.streich@example.com', '$2y$10$6ndrSE.aNNMprQ2ibTYALOJB9qtKKTAVqRewdp4IAu2iOpIelm0I.', 401372, 2, 'Active', NULL, NULL, '2022-03-11 01:22:21', '2022-03-11 01:22:21'),
 (6, 'Mohammed Humza Bin Zulfiqar', 'leon00@example.com', '$2y$10$kuYS0vJ2sdeTv2FgdSN8IODPStPBxVPfNckD5gKLbJCJYpm9cTNRe', 942633, 2, 'Active', NULL, NULL, '2022-03-11 01:22:22', '2022-03-11 01:22:22'),
 (7, 'MUHAMMAD SAAD TANVEER', 'dschinner@example.com', '$2y$10$lN3wXXN9B6UjSBCsWdxImOCp7h6zH1qT5K/QEHkqNEjQufxbmQ58q', 959265, 2, 'Active', NULL, NULL, '2022-03-11 01:22:22', '2022-03-11 01:22:22'),
@@ -314,7 +313,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `hrms_id`, `team_id`, `s
 (16, 'AMMARA BRAIKHNA', 'klocko.clair@example.net', '$2y$10$udKuEcz4ZrMfChDq.u5sF.KVlhhW/qNzzvD4f8GCt1G8FhrZPD7By', 649128, 4, 'Active', NULL, NULL, '2022-03-11 01:22:23', '2022-03-11 01:22:23'),
 (17, 'Hassan Khan', 'nikita46@example.net', '$2y$10$9T0W16ebOt1fLSR8O1fLqeCwkBbBFwdgei8mUNtnkEfjLPkz0Wo1C', 391219, 4, 'Active', NULL, NULL, '2022-03-11 01:22:23', '2022-03-11 01:22:23'),
 (18, 'SUFYAN NAZIR', 'frami.eldridge@example.net', '$2y$10$N2BF4g0kZ2e4qi7NALX0juBeLqEH7A473XYvWFmRRLKhYCsP2gNqa', 658803, 4, 'Active', NULL, NULL, '2022-03-11 01:22:24', '2022-03-11 01:22:24'),
-(19, 'MUHAMMAD AYAZ', 'madilyn68@example.org', '$2y$10$pt1U.pecUBaPpdhoIBL37eaOBZMgMMuqR2joYLlj9FFBqCugqWSIm', 408049, 5, 'Active', NULL, NULL, '2022-03-11 01:22:24', '2022-03-11 01:22:24'),
+(19, 'MUHAMMAD AYAZ', 'madilyn68@example.org', '$2y$10$slHDgiNAhq5zVmAMEZt89Oe8O84p9ZtSVtrYD1QW1p9xGD6YTZTzm', 408049, 5, 'Active', NULL, NULL, '2022-03-11 01:22:24', '2022-03-15 16:31:45'),
 (20, 'RABBIA KHAN', 'rupert.reichert@example.org', '$2y$10$orfZA/OQuNXd1cPEuewN0Ohg9W.7Lpe4bQTKjHT6akip1.wkMun3O', 499696, 5, 'Active', NULL, NULL, '2022-03-11 01:22:24', '2022-03-11 01:22:24'),
 (21, 'HASSAN RAZA HASHMI', 'djacobi@example.org', '$2y$10$SPKkru0eToWItNu0LFa4yu3JDRlhy0eZniKSxnoeCnLX3Dwo5lO3i', 593215, 1, 'Active', NULL, NULL, '2022-03-11 01:22:24', '2022-03-11 01:22:24');
 
@@ -453,13 +452,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `stats`
 --
 ALTER TABLE `stats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
