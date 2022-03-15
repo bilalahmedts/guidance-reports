@@ -78,6 +78,7 @@
                 <tr>
                     <th>@sortablelink('name', 'Name')</th>
                     <th>@sortablelink('email', 'Email')</th>
+                    <th>Team</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -89,6 +90,7 @@
                         <tr>
                             <td>{{ $user->name ?? '-' }}</td>
                             <td>{{ $user->email ?? '-' }}</td>
+                            <td>{{ $user->team->name ?? '-' }}</td>
                             <td>{{ $user->roles[0]->name ?? '-' }}</td>
                             <td>
                                 @if ($user->status == 'Active')
