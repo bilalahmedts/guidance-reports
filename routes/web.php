@@ -28,12 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/dashboard', [DashboardController::class, 'teamOneGraph'])->name('dashboard');
-
-
-
-
-
     Route::prefix('reports')->group(function () {
         Route::get('/', [GuidanceReportController::class, 'index'])->name('reports.index');
         Route::get('/create', [GuidanceReportController::class, 'create'])->name('reports.create');

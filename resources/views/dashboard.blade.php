@@ -1,34 +1,87 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-<div class="row">
-    <div class="col-md-3">
-        <div id="chart_one"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="chart-date-one"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="chart-date-one"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="chart-date-team-three"></div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <div id="chart_two"></div>
-    </div>
-    <div class="col-md-3">
-        <div id="chart_three"></div>
-    </div>
-  </div>
 @endsection
 @section('scripts')
-<script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script>
+        var data = {{ json_encode($team_one_data) }};
+        var date = [
+            @foreach ($team_one_dates as $date)
+                "{{ $date }}",
+            @endforeach
+        ];
+        Highcharts.chart('chart-date-one', {
+            title: {
+                text: 'Team One'
+            },
+            xAxis: {
+                categories: date
+            },
+            yAxis: {
+                title: {
+                    text: 'REA SIGNUP'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    allowPointSelect: true
+                }
+            },
+            series: [{
+                name: 'REA SIGNUP',
+                data: data
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    </script>
 <script>
-   var data = <?php echo json_encode($datas)?>;
-   var month = <?php echo json_encode($months)?>;
-    Highcharts.chart('chart_one', {
+    var team_three_tbd_assigned = {{ json_encode($team_three_tbd_assigned_data) }};
+    var team_three_no_of_matches = {{ json_encode($team_three_no_of_matches_data) }};
+    var date = [
+        @foreach ($team_one_dates as $date)
+            "{{ $date }}",
+        @endforeach
+    ];
+    Highcharts.chart('chart-date-team-three', {
         title: {
-            text: 'Team One'
+            text: 'Team Three'
         },
-
         xAxis: {
-            categories: month
+            categories: date
         },
         yAxis: {
             title: {
-                text: 'REA SIGNUP'
+                text: ''
             }
         },
         legend: {
@@ -42,9 +95,15 @@
             }
         },
         series: [{
-            name: 'REA SIGNUP',
-            data: data
-        }],
+            name: 'TBD ASSIGNED',
+            data: team_three_tbd_assigned
+        },
+        {
+            name: 'Number of Matches',
+            data: team_three_no_of_matches
+        }
+    
+    ],
         responsive: {
             rules: [{
                 condition: {
@@ -60,8 +119,6 @@
             }]
         }
     });
-
-
-
 </script>
+
 @endsection
