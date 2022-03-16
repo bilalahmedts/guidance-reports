@@ -31,7 +31,7 @@
             },
             yAxis: {
                 title: {
-                    text: 'REA SIGNUP'
+                    text: ''
                 }
             },
             legend: {
@@ -64,61 +64,61 @@
             }
         });
     </script>
-<script>
-    var team_three_tbd_assigned = {{ json_encode($team_three_tbd_assigned_data) }};
-    var team_three_no_of_matches = {{ json_encode($team_three_no_of_matches_data) }};
-    var date = [
-        @foreach ($team_one_dates as $date)
-            "{{ $date }}",
-        @endforeach
-    ];
-    Highcharts.chart('chart-date-team-three', {
-        title: {
-            text: 'Team Three'
-        },
-        xAxis: {
-            categories: date
-        },
-        yAxis: {
+    <script>
+        var team_three_tbd_assigned = {{ json_encode($team_three_tbd_assigned_data) }};
+        var team_three_no_of_matches = {{ json_encode($team_three_no_of_matches_data) }};
+        var date = [
+            @foreach ($team_one_dates as $date)
+                "{{ $date }}",
+            @endforeach
+        ];
+        Highcharts.chart('chart-date-team-three', {
             title: {
-                text: ''
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
-        },
-        plotOptions: {
-            series: {
-                allowPointSelect: true
-            }
-        },
-        series: [{
-            name: 'TBD ASSIGNED',
-            data: team_three_tbd_assigned
-        },
-        {
-            name: 'Number of Matches',
-            data: team_three_no_of_matches
-        }
-    
-    ],
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
+                text: 'Team Three'
+            },
+            xAxis: {
+                categories: date
+            },
+            yAxis: {
+                title: {
+                    text: '',
                 },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    allowPointSelect: true
                 }
-            }]
-        }
-    });
-</script>
+            },
+            series: [{
+                    name: 'TBD ASSIGNED',
+                    data: team_three_tbd_assigned
+                },
+                {
+                    name: 'Number of Matches',
+                    data: team_three_no_of_matches
+                }
+
+            ],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    </script>
 
 @endsection

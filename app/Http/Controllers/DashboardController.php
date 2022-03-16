@@ -22,7 +22,7 @@ class DashboardController extends Controller
         ->whereHas('user', function($query){
             $query->where('team_id',2);
         })->pluck('date');
-        
+
         $team_one_data = GuidanceReport::select('rea_sign_up')->whereHas('user', function($query){
             $query->where('team_id',1);
         })->pluck('rea_sign_up');
