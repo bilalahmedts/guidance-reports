@@ -69,10 +69,18 @@
         });
     </script>
     <script>
-        var team_three_tbd_assigned = {{ json_encode($team_three_tbd_assigned_data) }};
-        var team_three_no_of_matches = {{ json_encode($team_three_no_of_matches_data) }};
+        var tbd_assigned = [
+            @foreach ($team_three_tbd_assigned_data as $tbd)
+                        {{ $tbd }},
+                    @endforeach
+                ];
+        var no_of_matches = [
+            @foreach ($team_three_no_of_matches_data as $matches)
+                        {{ $matches }},
+                    @endforeach
+                ];
         var date = [
-            @foreach ($team_one_dates as $date)
+            @foreach ($team_three_dates as $date)
                 "{{ $date }}",
             @endforeach
         ];
@@ -85,8 +93,8 @@
             },
             yAxis: {
                 title: {
-                    text: '',
-                },
+                    text: ''
+                }
             },
             legend: {
                 layout: 'vertical',
@@ -98,16 +106,16 @@
                     allowPointSelect: true
                 }
             },
-            series: [{
-                    name: 'TBD ASSIGNED',
-                    data: team_three_tbd_assigned
-                },
+            series: [
                 {
-                    name: 'Number of Matches',
-                    data: team_three_no_of_matches
-                }
-
-            ],
+                name: 'TBD Assigned',
+                data: tbd_assigned
+            },
+            {
+                name: 'Number of Matches',
+                data: no_of_matches
+            },
+        ],
             responsive: {
                 rules: [{
                     condition: {
@@ -124,5 +132,4 @@
             }
         });
     </script>
-
 @endsection

@@ -26,28 +26,24 @@ class DashboardController extends Controller
         ->groupBy(DB::raw('Date(created_at)'))
         ->pluck('rea');
 
-        $team_two_dates = GuidanceReport::select(DB::raw('Date(created_at) as date'))
-        ->whereHas('user', function($query){
-            $query->where('team_id',2);
-        })->pluck('date');
-
         $team_three_dates = GuidanceReport::select(DB::raw('Date(created_at) as date'))
         ->whereHas('user', function($query){
             $query->where('team_id',3);
         })->whereYear('created_at',date('Y'))
         ->groupBy(DB::raw('Date(created_at)'))
         ->pluck('date');
-
         $team_three_tbd_assigned_data = GuidanceReport::select(DB::raw('SUM(tbd_assigned) as tbd'))->whereHas('user', function($query){
             $query->where('team_id',3);
         })->whereYear('created_at',date('Y'))
         ->groupBy(DB::raw('Date(created_at)'))
         ->pluck('tbd');
-        $team_three_no_of_matches_data = GuidanceReport::select('no_of_matches')->whereHas('user', function($query){
+        $team_three_no_of_matches_data = GuidanceReport::select(DB::raw('SUM(no_of_matches) as matches'))->whereHas('user', function($query){
             $query->where('team_id',3);
-        })->pluck('no_of_matches');
+        })->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->pluck('matches');
 
-        return view('dashboard', compact('team_one_dates','team_one_data','team_two_dates','team_three_dates','team_three_tbd_assigned_data','team_three_no_of_matches_data'));
+        return view('dashboard', compact('team_one_dates','team_one_data','team_three_dates','team_three_tbd_assigned_data','team_three_no_of_matches_data'));
     }
 
 }
