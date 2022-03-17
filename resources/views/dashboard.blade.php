@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')
-@if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Team Lead']))
+@if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Team Lead','Client']))
     <div class="row">
         <div class="col-md-6">
             <div id="chart-date-one"></div>

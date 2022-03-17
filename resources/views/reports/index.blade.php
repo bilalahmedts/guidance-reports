@@ -96,19 +96,19 @@
                         <th>@sortablelink('created_at', 'Date')</th>
                         <th>@sortablelink('user.name', 'Agent Name')</th>
                         <th>@sortablelink('team.name', 'Team Name')</th>
-                        @if ((Auth::user()->team->name == 'Team One' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                        @if ((Auth::user()->team->name == 'Team One' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                         <th>REA Sign Up</th>
                         @endif
-                        @if ((Auth::user()->team->name == 'Team Two' || Auth::user()->team->name == 'Team Inbound' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                        @if ((Auth::user()->team->name == 'Team Two' || Auth::user()->team->name == 'Team Inbound' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                         <th>Campaign</th>
                         <th>Transfer Per Day</th>
                         <th>Call Per Day</th>
                         @endif
-                        @if ((Auth::user()->team->name == 'Team Three' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                        @if ((Auth::user()->team->name == 'Team Three' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                         <th>TBD Assigned</th>
                         <th>Number of Matches</th>
                         @endif
-                        @if ((Auth::user()->team->name == 'Team Chat' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                        @if ((Auth::user()->team->name == 'Team Chat' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                         <th>Leads</th>
                         <th>Conversations</th>
                         @endif
@@ -125,19 +125,19 @@
                                 </td>
                                 <td>{{ $stat->user->name ?? '-' }}</td>
                                 <td>{{ $stat->user->team->name ?? '-' }}</td>
-                                @if ((Auth::user()->team->name == 'Team One' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                                @if ((Auth::user()->team->name == 'Team One' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                                 <td>{{ $stat->rea_sign_up ?? '-' }}</td>    
                                 @endif
-                                @if ((Auth::user()->team->name == 'Team Two' || Auth::user()->team->name == 'Team Inbound' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead']))) 
+                                @if ((Auth::user()->team->name == 'Team Two' || Auth::user()->team->name == 'Team Inbound' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client']))) 
                                 <td>{{ $stat->category->name ?? '-' }}</td>
                                 <td>{{ $stat->transfer_per_day ?? '-' }}</td>
                                 <td>{{ $stat->call_per_day ?? '-' }}</td>
                                 @endif
-                                @if ((Auth::user()->team->name == 'Team Three' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                                @if ((Auth::user()->team->name == 'Team Three' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                                 <td>{{ $stat->tbd_assigned ?? '-' }}</td>
                                 <td>{{ $stat->no_of_matches ?? '-' }}</td>
                                 @endif
-                                @if ((Auth::user()->team->name == 'Team Chat' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead'])))
+                                @if ((Auth::user()->team->name == 'Team Chat' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                                 <td>{{ $stat->leads ?? '-' }}</td>
                                 <td>{{ $stat->conversations ?? '-' }}</td>
                                 @endif

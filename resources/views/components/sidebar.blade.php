@@ -10,18 +10,22 @@
         </li>
         <li class="nav-header">GUIDANCE REPORTS</li>
         <li class="nav-item">
+            @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Associate']))    
         <li class="nav-item">
             <a href="{{ route('reports.create') }}" class="nav-link">
                 <i class="far fa fa-plus nav-icon"></i>
                 <p>Create Entry</p>
             </a>
         </li>
+        @endif
+        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Associate','Client']))
         <li class="nav-item">
             <a href="{{ route('reports.index') }}" class="nav-link">
                 <i class="far fa fa-eye nav-icon"></i>
                 <p>View Entries</p>
             </a>
         </li>
+        @endif
         @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
         <li class="nav-item">
             <a href="{{ route('reports.guidance-reports') }}" class="nav-link">
