@@ -11,29 +11,38 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
-    public function index()  
+    public function index()
     {
         $team_one_dates = GuidanceReport::select(DB::raw('Date(created_at) as date'))
         ->whereHas('user', function($query){
             $query->where('team_id',1);
-        })->pluck('date');
+        })->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->pluck('date');
+
+        $team_one_data = GuidanceReport::select(DB::raw('SUM(rea_sign_up) as rea'))->whereHas('user', function($query){
+            $query->where('team_id',1);
+        })->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->pluck('rea');
 
         $team_two_dates = GuidanceReport::select(DB::raw('Date(created_at) as date'))
         ->whereHas('user', function($query){
             $query->where('team_id',2);
         })->pluck('date');
 
-        $team_one_data = GuidanceReport::select('rea_sign_up')->whereHas('user', function($query){
-            $query->where('team_id',1);
-        })->pluck('rea_sign_up');
-
         $team_three_dates = GuidanceReport::select(DB::raw('Date(created_at) as date'))
         ->whereHas('user', function($query){
             $query->where('team_id',3);
-        })->pluck('date');
-        $team_three_tbd_assigned_data = GuidanceReport::select('tbd_assigned')->whereHas('user', function($query){
+        })->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->pluck('date');
+
+        $team_three_tbd_assigned_data = GuidanceReport::select(DB::raw('SUM(tbd_assigned) as tbd'))->whereHas('user', function($query){
             $query->where('team_id',3);
-        })->pluck('tbd_assigned');
+        })->whereYear('created_at',date('Y'))
+        ->groupBy(DB::raw('Date(created_at)'))
+        ->pluck('tbd');
         $team_three_no_of_matches_data = GuidanceReport::select('no_of_matches')->whereHas('user', function($query){
             $query->where('team_id',3);
         })->pluck('no_of_matches');

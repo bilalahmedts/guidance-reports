@@ -16,7 +16,11 @@
 @section('scripts')
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script>
-        var data = {{ json_encode($team_one_data) }};
+        var data = [
+            @foreach ($team_one_data as $team_one)
+                        {{ $team_one }},
+                    @endforeach
+                ];
         var date = [
             @foreach ($team_one_dates as $date)
                 "{{ $date }}",
