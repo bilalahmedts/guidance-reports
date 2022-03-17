@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Dashboard')
 @section('content')
+@if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Team Lead']))
     <div class="row">
         <div class="col-md-6">
             <div id="chart-date-one"></div>
@@ -21,6 +22,7 @@
             <div id="chart-month-team-three"></div>
         </div>
     </div>
+    @endif
 @endsection
 @section('scripts')
     <script src="https://code.highcharts.com/highcharts.js"></script>
