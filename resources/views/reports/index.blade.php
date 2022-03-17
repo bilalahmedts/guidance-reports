@@ -85,7 +85,7 @@
             <h3 class="card-title">Guidance Report</h3>
             <div class="card-tools">
                 <a href="{{ route('reports.create') }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i> Create Report
+                    <i class="fas fa-plus"></i> Create Entry
                 </a>
             </div>
         </div>
