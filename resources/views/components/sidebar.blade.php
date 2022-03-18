@@ -10,7 +10,7 @@
         </li>
         <li class="nav-header">GUIDANCE REPORTS</li>
         <li class="nav-item">
-            @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Associate']))    
+            @if (in_array(Auth::user()->roles[0]->name, ['Super Admin','Team Lead','Manager','Associate']))    
         <li class="nav-item">
             <a href="{{ route('reports.create') }}" class="nav-link">
                 <i class="far fa fa-plus nav-icon"></i>
@@ -18,7 +18,7 @@
             </a>
         </li>
         @endif
-        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Associate','Client']))
+        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager','Team Lead','Associate','Client']))
         <li class="nav-item">
             <a href="{{ route('reports.index') }}" class="nav-link">
                 <i class="far fa fa-eye nav-icon"></i>
@@ -26,14 +26,16 @@
             </a>
         </li>
         @endif
-        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager']))
+        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead']))
         <li class="nav-item">
             <a href="{{ route('reports.guidance-reports') }}" class="nav-link">
                 <i class="far fa-file nav-icon"></i>
                 <p>View Report</p>
             </a>
         </li>
+        @endif
         </li>
+        @if (in_array(Auth::user()->roles[0]->name, ['Super Admin']))
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
@@ -61,8 +63,8 @@
                             <p>Roles</p>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
-        @endif
     </ul>
 </nav>

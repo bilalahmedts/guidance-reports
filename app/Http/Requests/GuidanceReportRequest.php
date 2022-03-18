@@ -25,6 +25,7 @@ class GuidanceReportRequest extends FormRequest
     {
         $request = $this->request;
         $rules = [];
+
         if ($request->has('transfer_per_day')) {
             if (!empty($request->transfer_per_day)) {
                 $rules['transfer_per_day'] = "numeric";
@@ -58,11 +59,6 @@ class GuidanceReportRequest extends FormRequest
         if ($request->has('conversations')) {
             if (!empty($request->conversations)) {
                 $rules['conversations'] = "numeric";
-            }
-        }
-        if ($request->has('inbound')) {
-            if (!empty($request->inbound)) {
-                $rules['inbound'] = "numeric";
             }
         }
         return $rules;

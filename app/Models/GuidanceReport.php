@@ -11,7 +11,7 @@ class GuidanceReport extends Model
     use HasFactory, Sortable;
     protected $fillable = [
         'user_id', 'categories_id', 'transfer_per_day', 'call_per_day', 'rea_sign_up', 
-        'tbd_assigned', 'no_of_matches', 'leads', 'conversations', 'inbound', 'created_at'];
+        'tbd_assigned', 'no_of_matches', 'leads', 'conversations', 'created_at'];
     protected $table = 'stats';
 
     public function user()
