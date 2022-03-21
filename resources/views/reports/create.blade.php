@@ -69,7 +69,7 @@
                                             @enderror
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Number of Transfers Per Day</label>
-                                                <input type="text" class="form-control" name="transfer_per_day[]"
+                                                <input type="number" class="form-control" name="transfer_per_day[]"
                                                     placeholder="Enter Number of Transfers Per Day" id="transfer_per_day">
                                             </div>
                                             @error('transfer_per_day')
@@ -84,7 +84,7 @@
                     <div id="team_three" style="display: none">
                         <div class="form-group">
                             <label for="exampleInputEmail1">TBDs Assigned</label>
-                            <input type="text" class="form-control" name="tbd_assigned" placeholder="Enter TBDs Assigned"
+                            <input type="number" class="form-control" name="tbd_assigned" placeholder="Enter TBDs Assigned"
                                 id="tbd_assigned">
                         </div>
                         @error('tbd_assigned')
@@ -92,7 +92,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Number of Matches</label>
-                            <input type="text" class="form-control" name="no_of_matches"
+                            <input type="number" class="form-control" name="no_of_matches"
                                 placeholder="Enter Number of Matches" id="no_of_matches">
                         </div>
                         @error('no_of_matches')
@@ -102,7 +102,7 @@
                     <div id="team_chat" style="display: none">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Leads</label>
-                            <input type="text" class="form-control" name="leads" placeholder="Enter Number of Leads"
+                            <input type="number" class="form-control" name="leads" placeholder="Enter Number of Leads"
                                 id="leads">
                         </div>
                         @error('leads')
@@ -110,7 +110,7 @@
                         @enderror
                         <div class="form-group">
                             <label for="exampleInputEmail1">Conversations</label>
-                            <input type="text" class="form-control" name="conversations"
+                            <input type="number" class="form-control" name="conversations"
                                 placeholder="Enter Number of Conversations" id="conversations">
                         </div>
                         @error('conversations')
