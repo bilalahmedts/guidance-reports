@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/guidance-reports', [GuidanceReportController::class, 'report'])->name('reports.guidance-reports');
         Route::post('/guidance-reports', [GuidanceReportController::class, 'getDataByDate'])->name('reports.guidance-reports');
         Route::get('/export-guidance-reports', [GuidanceReportController::class, 'export'])->name('reports.guidance-report-table');
+        Route::get('/import-guidance-report-form', [GuidanceReportController::class, 'importForm'])->name('reports.import-form');
+        Route::post('/import-guidance-report', [GuidanceReportController::class, 'import'])->name('reports.import');
     });
 
     Route::prefix('users')->group(function () {
