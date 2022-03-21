@@ -140,8 +140,13 @@ class GuidanceReportController extends Controller
         return Excel::download(new GuidanceReportExport($request), 'guidance-report.xlsx');
     }
 
+    public function importForm()
+    {
+        return view('reports.import-form');
+    }
+
     public function import()
     {
-        return view('reports.import');
+        # code...
     }
 }
