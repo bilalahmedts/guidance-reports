@@ -36,6 +36,12 @@
         @endif
         </li>
         @if (in_array(Auth::user()->roles[0]->name, ['Super Admin']))
+        <li class="nav-item">
+            <a href="{{ route('reports.import-form') }}" class="nav-link">
+                <i class="fa fa-upload nav-icon"></i>
+                <p>Import Report</p>
+            </a>
+        </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>

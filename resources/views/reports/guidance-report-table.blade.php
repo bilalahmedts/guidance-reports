@@ -12,7 +12,6 @@
             <th>Number of Matches</th>
             <th>Leads</th>
             <th>Conversations</th>
-            <th>Inbound</th>
         </tr>
     </thead>
     <tbody>
@@ -30,7 +29,6 @@
                     <td>{{ $stat->no_of_matches ?? '-' }}</td>
                     <td>{{ $stat->leads ?? '-' }}</td>
                     <td>{{ $stat->conversations ?? '-' }}</td>
-                    <td>{{ $stat->inbound ?? '-' }}</td>
                 </tr>
             @endforeach
         @else

@@ -3,14 +3,41 @@
 @section('title', 'Import Guidance Reports')
 
 @section('content')
+@if ($message = Session::get('success'))
+<div class="alert alert-success">
+    <p>{{ $message }}</p>
+</div>
+@endif
     <div class="card card-primary card-outline">
         <div class="card-header">
             <h3 class="card-title">Import Guidance Report</h3>
-            <div class="card-tools">
-                <a href="{{ route('reports.import') }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i> Import
-                </a>
-            </div>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('reports.import') }}" method="post" enctype="multipart/form-data">
+                @csrf
+            <div class="form-group">
+                <label for="exampleInputFile">File input</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" name="file" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Upload</button>
+              </div>
+            </form>
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<script>
+    $(function () {
+      bsCustomFileInput.init();
+    });
+    </script>
 @endsection

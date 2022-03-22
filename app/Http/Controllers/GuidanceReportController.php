@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\GuidanceReport;
 use App\Http\Requests\GuidanceReportRequest;
 use App\Exports\GuidanceReportExport;
+use App\Imports\GuidanceReportImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
@@ -147,6 +148,8 @@ class GuidanceReportController extends Controller
 
     public function import()
     {
-        # code...
+        Excel::import(new GuidanceReportImport,request()->file('file'));  
+        Session::flash('success', 'File Uploaded successfully!');    
+        return back();
     }
 }
