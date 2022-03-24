@@ -16,7 +16,7 @@
             <form action="{{ route('reports.import') }}" method="post" enctype="multipart/form-data">
                 @csrf
             <div class="form-group">
-                <label for="exampleInputFile">File input</label>
+                <label for="exampleInputFile">File input</label> <a href="{{ asset("guidance-report.xlsx") }}" download>(Click here to download relevant file format)</a>
                 <div class="input-group">
                   <div class="custom-file">
                     <input type="file" class="custom-file-input" name="file" id="exampleInputFile">
