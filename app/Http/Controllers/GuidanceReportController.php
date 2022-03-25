@@ -146,8 +146,11 @@ class GuidanceReportController extends Controller
         return view('reports.import-form');
     }
 
-    public function import()
+    public function import(Request $request)
     {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
         Excel::import(new GuidanceReportImport,request()->file('file'));  
         Session::flash('success', 'File Uploaded successfully!');    
         return back();
