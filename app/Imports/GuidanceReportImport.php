@@ -17,8 +17,8 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
     {
         foreach ($rows as $row) {
             $keys = array_keys($row->toArray());
-                if (($keys[0] == 'date') && ($keys[1] == 'agent_name') && ($keys[2] == 'team') && ($keys[3] == 'campaign') 
-                    && ($keys[4] == 'transfer_per_day') && ($keys[5] == 'call_per_day') && ($keys[6] == 'rea_sign_up') && ($keys[7] == 'tbd_assigned') 
+                if (($keys[0] == 'date') && ($keys[1] == 'agent_name') && ($keys[2] == 'team') && ($keys[3] == 'campaign')
+                    && ($keys[4] == 'transfer_per_day') && ($keys[5] == 'call_per_day') && ($keys[6] == 'rea_sign_up') && ($keys[7] == 'tbd_assigned')
                     && ($keys[8] == 'number_of_matches') && ($keys[9] == 'leads') && ($keys[10] == 'conversations')) {
 
                     $users = User::all();
@@ -27,11 +27,11 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
                     $category = $categories->where('name',$row['campaign'])->first();
 
                     GuidanceReport::create([
-                    "created_at" => $row['date'],
+                    "created_at" => $this->transformDate($row['date']),
                     "user_id" => $user->id ?? '-',
                     "team_id" => $user->team->id ?? '-',
                     "categories_id" => $category->id ?? '-',
-                    "transfer_per_day" => $row["transfer_per_day"] ?? '-', 
+                    "transfer_per_day" => $row["transfer_per_day"] ?? '-',
                     "call_per_day" => $row["call_per_day"] ?? '-',
                     "rea_sign_up" => $row["rea_sign_up"] ?? '-',
                     "tbd_assigned" => $row["tbd_assigned"] ?? '-',
@@ -39,7 +39,29 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
                     "leads" => $row["leads"] ?? '-',
                     "conversations" => $row["conversations"] ?? '-',
                 ]);
-            } 
+            }
         }
     }
+
+    public function transformDate($value, $format = 'Y-m-d')
+{
+    try {
+        return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
+    } catch (\ErrorException $e) {
+        return \Carbon\Carbon::createFromFormat($format, $value);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
