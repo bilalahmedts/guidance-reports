@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Category;
 use App\Models\GuidanceReport;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
 use Maatwebsite\Excel\Concerns\ToCollection;
@@ -27,7 +28,7 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
                     $category = $categories->where('name',$row['campaign'])->first();
 
                     GuidanceReport::create([
-                    "created_at" => $this->transformDate($row['date']),
+                    "created_at" => Carbon::createFromFormat('d-m-Y', $row['date'])->format('Y-m-d'),
                     "user_id" => $user->id ?? '-',
                     "team_id" => $user->team->id ?? '-',
                     "categories_id" => $category->id ?? '-',
@@ -43,14 +44,14 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
         }
     }
 
-    public function transformDate($value, $format = 'Y-m-d')
+    /* public function transformDate($value, $format = 'Y-m-d')
 {
     try {
         return \Carbon\Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($value));
     } catch (\ErrorException $e) {
         return \Carbon\Carbon::createFromFormat($format, $value);
     }
-}
+} */
 
 
 
