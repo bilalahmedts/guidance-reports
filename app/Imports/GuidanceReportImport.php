@@ -26,9 +26,8 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
                     $user = $users->where('name',$row['agent_name'])->first();
                     $categories = Category::all();
                     $category = $categories->where('name',$row['campaign'])->first();
-
                     GuidanceReport::create([
-                    "created_at" => $row['date'],
+                    "created_at" => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date'])->format('Y-m-d'),
                     "user_id" => $user->id ?? '-',
                     "team_id" => $user->team->id ?? '-',
                     "categories_id" => $category->id ?? '-',
@@ -43,18 +42,4 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
