@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Illuminate\Validation\ValidationException;
 
 class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRows
 {
@@ -39,6 +40,8 @@ class GuidanceReportImport implements ToCollection, WithHeadingRow, SkipsEmptyRo
                     "leads" => $row["leads"] ?? '-',
                     "conversations" => $row["conversations"] ?? '-',
                 ]);
+            } else {
+                throw ValidationException::withMessages(['Invalid column or missing column']);
             }
         }
     }
