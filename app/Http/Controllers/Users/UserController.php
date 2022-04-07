@@ -11,10 +11,27 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::sortable()->paginate(10);
-        return view('users.index', compact('users'));
+        $query = new User;
+        if ($request->has('name')) {
+            if (!empty($request->name)) {
+                $query = $query->where('name', 'LIKE', "%{$request->name}%");
+            }
+        }
+        if ($request->has('email')) {
+            if (!empty($request->email)) {
+                $query = $query->where('email', 'LIKE', "%{$request->email}%");
+            }
+        }
+        if ($request->has('team_id')) {
+            if (!empty($request->team_id)) {
+                $query = $query->where('team_id', 'LIKE', "%{$request->team_id}%");
+            }
+        }
+        $teams = Team::where('id', '!=', 8)->get();
+        $users = $query->sortable()->paginate(10);
+        return view('users.index', compact('users','teams'));
     }
     public function create()
     {

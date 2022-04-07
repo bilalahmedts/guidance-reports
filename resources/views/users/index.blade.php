@@ -25,13 +25,16 @@
     @php
         $name = '';
         $email = '';
-
+        $team_id = '';
 
         if (isset($_GET['name'])) {
         $name = $_GET['name'];
         }
         if (isset($_GET['email'])) {
         $email = $_GET['email'];
+        }
+        if (isset($_GET['team_id'])) {
+        $team_id = $_GET['team_id'];
         }
 
     @endphp
@@ -50,6 +53,16 @@
                     <div class="form-group col-md-4">
                         <label for="">Email Address</label>
                         <input type="text" name="email" value="{{ $email }}" class="form-control">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="exampleInputPassword1">Select Team</label>
+                <select name="team_id" class="form-control select2">
+                    <option value="">Select Option</option>
+                    @foreach($teams as $team)
+                        <option value="{{ $team->id }}"@if ($team_id == $team->id) selected @endif>{{ $team->name ?? '' }}</option>
+                    @endforeach
+                </select>
                     </div>
                 </div>
             </div>
