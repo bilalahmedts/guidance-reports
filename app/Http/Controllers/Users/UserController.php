@@ -36,7 +36,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $teams = Team::all();
+        $teams = Team::where('id', '!=', 8)->get();
         return view('users.create', compact('roles', 'teams'));
     }
     public function store(UserRequest $request)
@@ -50,7 +50,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::all();
-        $teams = Team::all();
+        $teams = Team::where('id', '!=', 8)->get();
         return view('users.edit', compact('user','roles','teams'));
     }
 
