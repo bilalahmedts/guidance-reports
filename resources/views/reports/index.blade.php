@@ -95,7 +95,7 @@
                     <tr>
                         <th>@sortablelink('created_at', 'Date')</th>
                         <th>@sortablelink('user.name', 'Agent Name')</th>
-                        <th>@sortablelink('team.name', 'Team Name')</th>
+                        <th>Team Name</th>
                         @if ((Auth::user()->team->name == 'Team Two' || Auth::user()->team->name == 'Team Inbound' && Auth::user()->roles[0]->name == 'Associate') || (in_array(Auth::user()->roles[0]->name, ['Super Admin', 'Manager', 'Team Lead','Client'])))
                         <th>Campaign</th>
                         <th>Transfer Per Day</th>
