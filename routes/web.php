@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/store', [UserController::class, 'store'])->name('users.store');
         Route::get('/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
-        Route::put('/edit/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::put('/update/{user}', [UserController::class, 'update'])->name('users.update');
         Route::get('/delete/{user}', [UserController::class, 'destroy'])->name('users.delete');
     });
     
@@ -57,7 +57,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
         Route::post('/store', [RoleController::class, 'store'])->name('roles.store');
         Route::get('/edit/{role}', [RoleController::class, 'edit'])->name('roles.edit');
-        Route::put('/edit/{role}', [RoleController::class, 'update'])->name('roles.update');
+        Route::put('/update/{role}', [RoleController::class, 'update'])->name('roles.update');
         Route::get('/delete/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
     });
 

@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Kyslik\ColumnSortable\Sortable;
 use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends Authenticatable
 {
@@ -44,6 +45,7 @@ class User extends Authenticatable
      */
 
     protected $guarded = [];
+    
 
     public function setPasswordAttribute($password)
     {
@@ -54,4 +56,24 @@ class User extends Authenticatable
      {
          return $this->hasOne(Team::class, 'id', 'team_id');
      }
+     public function scopeSearch($query, $request){
+
+        if ($request->has('name')) {
+            if (!empty($request->name)) {
+                $query = $query->where('name', 'LIKE', "%{$request->name}%");
+            }
+        }
+        if ($request->has('email')) {
+            if (!empty($request->email)) {
+                $query = $query->where('email', 'LIKE', "%{$request->email}%");
+            }
+        }
+        if ($request->has('team_id')) {
+            if (!empty($request->team_id)) {
+                $query = $query->where('team_id', 'LIKE', "%{$request->team_id}%");
+            }
+        }
+
+        return $query;
+    }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head runat="server">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Default content') - {{ env('APP_NAME') }}</title>
@@ -37,9 +37,10 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
-              </ul>
+            </ul>
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
@@ -139,7 +140,31 @@
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-    
+
+    <script type="text/javascript">
+        var IdealTimeOut = 600;
+        var idleSecondsTimer = null;
+        var idleSecondsCounter = 0;
+        document.onclick = function() {
+            idleSecondsCounter = 0;
+        };
+        document.onmousemove = function() {
+            idleSecondsCounter = 0;
+        };
+        document.onkeypress = function() {
+            idleSecondsCounter = 0;
+        };
+        idleSecondsTimer = window.setInterval(CheckIdleTime, 1000);
+
+        function CheckIdleTime() {
+            idleSecondsCounter++;
+            if (idleSecondsCounter >= IdealTimeOut) {
+                window.clearInterval(idleSecondsTimer);
+                window.location = "{{ env('APP_URL') }}logout";
+            }
+        }
+    </script>
+
     @yield('scripts')
 
 

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class RoleRequest extends FormRequest
 {
@@ -24,14 +26,29 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|alpha|unique:roles',
+            'name' => 'required|unique:roles',
         ];
 
         if ($this->getMethod() == "PUT") {
-            $rules['name'] = 'required|alpha|unique:roles,name,' . $this->role->id;
+            $rules['name'] = 'required|unique:roles,name,' . $this->role->id;
         }
 
         return $rules;
     }
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ]));
     }
+    public function messages() //OPTIONAL
+    {
+        return [
+            'name.required' => 'Name is required',
+            'name.name' => 'Name is not correct'
+        ];
+    }
+}
 
