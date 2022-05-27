@@ -21,9 +21,12 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:api')->group(function () {
+    
     Route::prefix('users')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
-        Route::get('/show/{user}', [UserController::class, 'show']);
+        Route::middleware('APIkey')->group(function () {
+        Route::get('/access_key={apikey}', [UserController::class, 'index']);
+        Route::get('/show/{user}/access_key={apikey}', [UserController::class, 'show']);
+        });
         Route::post('/store', [UserController::class, 'store']);
         Route::put('/update/{user}', [UserController::class, 'update']);
     });
@@ -34,14 +37,17 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/delete/{role}', [RoleController::class, 'destroy']);
     });
     Route::prefix('reports')->group(function () {
-        Route::get('/', [GuidanceReportController::class, 'index']);
-        Route::get('/get-team-detail/{id}', [GuidanceReportController::class, 'getUserTeamDetails']);
-        Route::post('/store', [GuidanceReportController::class, 'store']);
-        Route::put('/update/{stat}', [GuidanceReportController::class, 'update']);
-        Route::get('/delete/{stat}', [GuidanceReportController::class, 'destroy']);
-        Route::get('/guidance-reports', [GuidanceReportController::class, 'report']);
-        Route::post('/guidance-reports', [GuidanceReportController::class, 'getDataByDate']);
-        Route::get('/export-guidance-reports', [GuidanceReportController::class, 'export']);
-        Route::post('/import-guidance-report', [GuidanceReportController::class, 'import']);
+        Route::middleware('APIkey')->group(function () {
+        Route::get('/access_key={apikey}', [GuidanceReportController::class, 'index']);
+        Route::get('/get-team-detail/{id}/access_key={apikey}', [GuidanceReportController::class, 'getUserTeamDetails']);
+        Route::post('/store/access_key={apikey}', [GuidanceReportController::class, 'store']);
+        Route::put('/update/{stat}/access_key={apikey}', [GuidanceReportController::class, 'update']);
+        Route::get('/delete/{stat}/access_key={apikey}', [GuidanceReportController::class, 'destroy']);
+        Route::get('/guidance-reports/access_key={apikey}', [GuidanceReportController::class, 'report']);
+        Route::post('/guidance-reports/access_key={apikey}', [GuidanceReportController::class, 'getDataByDate']);
+        Route::get('/export-guidance-reports/access_key={apikey}', [GuidanceReportController::class, 'export']);
+        Route::post('/import-guidance-report/access_key={apikey}', [GuidanceReportController::class, 'import']);
+    });
     });
 });
+

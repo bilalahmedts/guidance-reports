@@ -46,7 +46,14 @@ class User extends Authenticatable
 
     protected $guarded = [];
     
+    protected static function boot()
+    {
+        parent::boot();
 
+        User::creating(function($model) {
+            $model->access_key = 'Touch123';
+        });
+    }
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('hrms_id')->nullable();
             $table->integer('team_id')->nullable();
             $table->enum('status', ['Active','InActive'])->default('Active');
+            $table->string('access_key', 15)->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
